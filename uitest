@@ -1,0 +1,39 @@
+<?php 
+
+if ( ! defined('STDIN') )
+	exit;
+
+include_once './lib/helper.functions.php';
+
+# Load environment variables
+load_env();
+
+$sopts  = "m:n:p::"; // make:name:path::
+
+$lopts  = array(
+	"make:",
+	"name:",
+	"path::",
+);
+
+# Get options from CLI
+$options = getopt($sopts, $lopts);
+
+extract($options);
+
+$path_tests 	= ( ! empty($path) ) ? $path : env('PATH_TESTS');
+$name 			= rtrim($name, "TtEeSsTt");
+$test_name 		= $name . "Test_" . md5(time());
+$new_test_case 	= str_replace(array(
+							"<%test_name%>", 
+							"<%element_name%>", 
+						),
+						array(
+							$test_name,
+							$name, 
+						),
+						file_get_contents(env('TEST_CASE_TEMPLATE'))
+					);
+
+file_put_contents(rtrim($path_tests, "/") . "/" . $test_name . ".php", $new_test_case, LOCK_EX);
+
