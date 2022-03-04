@@ -1,4 +1,4 @@
-# Foobar
+# UITesting
 
 UITesting is a extremely light tool for Unit and Integration testing.
 
