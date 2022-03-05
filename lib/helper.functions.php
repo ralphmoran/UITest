@@ -2,6 +2,12 @@
 
 if (! function_exists('env') )
 {
+	/**
+	 * Returns the value of the environment variable.
+	 *
+	 * @param string $env_var
+	 * @return mixed
+	 */
 	function env( $env_var ) 
 	{
 		if( isset( $_ENV[$env_var] ) || array_key_exists( $env_var, $_ENV ) )
@@ -11,6 +17,11 @@ if (! function_exists('env') )
 
 if( ! function_exists('load_env') )
 {
+	/**
+	 * Loads the entire environment for the application.
+	 *
+	 * @return void
+	 */
 	function load_env()
 	{
 		if( file_exists('./.env') )
