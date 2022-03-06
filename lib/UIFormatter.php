@@ -15,7 +15,7 @@ class UIFormatter
 
 		foreach ($tests as $test_name => $test_cases) {
 
-			self::output("\n" . $test_name, "green", false, $verbose);
+			self::output("\n" . $test_name, "ugreen", false, $verbose);
 
 			foreach ($test_cases as $test_case_name => $assertions) {
 

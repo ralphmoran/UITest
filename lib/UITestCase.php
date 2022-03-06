@@ -1,7 +1,5 @@
 <?php
 
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
-
 abstract class UITestCase
 {
 	/** @var string Name of the class or function to be used. */
@@ -52,13 +50,22 @@ abstract class UITestCase
 		return $status;
 	}
 
+	/**
+	 * Returns private property $this->assertion_status array.
+	 *
+	 * @return array
+	 */
+	public function getAssertionStatus() : array
+	{
+		return $this->assertion_status;
+	}
 	
 	###############################################################
 	/** Assertions */
 	###############################################################
 
 	/**
-	 * Asserts if  $var1 and $var2 are the same in value, if $strict is set, 
+	 * Asserts if $var1 and $var2 are the same in value, if $strict is set, 
 	 * this function will assert if the 2 variables are the same type too.
 	 *
 	 * @param mixed $var1
@@ -123,14 +130,42 @@ abstract class UITestCase
 	}
 
 	/**
-	 * Returns private property $this->assertion_status array.
+	 * Asserts if $str variable is string type.
+	 * 
+	 * All values between "" or '' are considered strings.
 	 *
-	 * @return array
+	 * @param string $str
+	 * @return boolean
 	 */
-	public function getAssertionStatus() : array
+	protected function assertIsString(string $str) : bool
 	{
-		return $this->assertion_status;
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( is_string($str) )
+									);
 	}
+
+	/**
+	 * Asserts if $var is empty.
+	 * 
+	 * Any variable that contains "", 0, false, or NULL are considered empty.
+	 * 
+	 * "null" returns false because it's validated as a string with value of "null".
+	 * "0" returns true, it's the character "0" not the actual number of 0.
+	 *
+	 * @param mixed $var
+	 * @return boolean
+	 */
+	protected function assertEmpty( $var ) : bool
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( empty($var) )
+									);
+	}
+
+
+
 
 	/*
 
@@ -147,7 +182,7 @@ abstract class UITestCase
 	assertDirectoryExists()
 	assertDirectoryIsReadable()
 	assertDirectoryIsWritable()
-	assertEmpty()
+	(*)assertEmpty()
 	assertEquals()
 	assertEqualsCanonicalizing()
 	assertEqualsIgnoringCase()
@@ -172,7 +207,7 @@ abstract class UITestCase
 	assertIsObject()
 	assertIsResource()
 	assertIsScalar()
-	assertIsString()
+	(*)assertIsString()
 	assertIsReadable()
 	assertIsWritable()
 	assertJsonFileEqualsJsonFile()

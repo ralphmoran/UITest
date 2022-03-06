@@ -2,18 +2,23 @@
 
 $dirname = dirname(__FILE__);
 
-# Autoloader
+// Autoloader
 require_once $dirname . '/lib/autoload.php';
 
-# Helper functions
+// Helper functions
 require_once $dirname . '/lib/helper.functions.php';
 
-# Examples
+// Examples
 require_once $dirname . '/examples/functions.php';
 require_once $dirname . '/examples/classes/classes.php';
 
-# Use case
+// Use case
 $tester = new UITester();
 
-$tester->only('GetRandomStrTest')
+// Run all tests
+$tester->all()
+	->outputAssertionResults();
+
+// Only specific tests
+$tester->only('AirPlaneTest_94c91bedfa9be686afc373100b2e72f5')
 	->outputAssertionResults();

@@ -67,7 +67,7 @@ final class UITester {
 
 		foreach($tests as $test)
 			$this->registerTestResult( 
-				$this->load_test( $this->path . '/' . $test . '.' . $this->extension )
+				$this->load_test( $test )
 					->run()
 					->getAssertionStatus()
 			);
@@ -129,8 +129,11 @@ final class UITester {
 	private function load_test( $test )
 	{
 		$test_name = $this->getTestName( $test );
-		
+
 		if( ! in_array( $test_name, $this->loaded_tests ) ){
+
+			# 
+			$test = $this->path . "/" . $test_name . ".".  $this->extension;
 
 			# Avoid object injection exploits
 			call_user_func(function () use ( $test ) {
@@ -142,7 +145,7 @@ final class UITester {
 					return NULL;
 				}
 
-				@include_once $test;
+				@require_once $test;
 				
 				ob_end_clean();
 			});
@@ -153,9 +156,6 @@ final class UITester {
 				return NULL;
 			}
 
-			// var_dump(get_class_methods($test_name));
-
-			// $this->loaded_tests[] = $this->current_path_test = str_replace( '.' . $this->current_file_ext, '', $test );
 			$this->loaded_tests[] = $test_name;
 		}
 
