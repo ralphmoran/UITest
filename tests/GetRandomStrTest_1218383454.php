@@ -1,9 +1,9 @@
 <?php
 
-class GetRandomStrTest extends UITestCase
+class GetRandomStrTest_1218383454 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
-	protected $element = 'getRandomStr';
+	protected $element = 'GetRandomStr';
 
 	/**
 	 * Tests if 'getRandomStr' returns length of 3.
@@ -24,4 +24,5 @@ class GetRandomStrTest extends UITestCase
 	{
 		$this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1));
 	}
+
 }

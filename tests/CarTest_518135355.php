@@ -1,6 +1,6 @@
 <?php
 
-class CarTest_e9f69bb51defb4bff6a680f4981fb4cf extends UITestCase
+class CarTest_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
 	protected $element = 'Car';
@@ -17,5 +17,5 @@ class CarTest_e9f69bb51defb4bff6a680f4981fb4cf extends UITestCase
 		$this->assertNotEmpty($car_type)
 			->assertIsString($car_type);
 	}
-
+	
 }
