@@ -40,14 +40,14 @@ abstract class UITestCase
 	 * @param string $name
 	 * @param array $args
 	 * @param boolean $status
-	 * @return bool
+	 * @return UITestCase
 	 */
-	private function logAssertionStatus(string $name, array $args, bool $status = true) : bool
+	private function logAssertionStatus(string $name, array $args, bool $status = true) : UITestCase
 	{
 		// Tracking back the parent method that called the assertion
 		$this->assertion_status[ debug_backtrace()[2]['class'] ][ debug_backtrace()[2]['function'] ][] = get_defined_vars();
 
-		return $status;
+		return $this;
 	}
 
 	/**
@@ -71,9 +71,9 @@ abstract class UITestCase
 	 * @param mixed $var1
 	 * @param mixed $var2
 	 * @param boolean $strict
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertSame($var1, $var2, $strict = false) : bool
+	protected function assertSame($var1, $var2, $strict = false) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -86,9 +86,9 @@ abstract class UITestCase
 	 *
 	 * @param mixed $var1
 	 * @param mixed $var2
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertSameSize($var1, $var2) : bool
+	protected function assertSameSize($var1, $var2) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -104,9 +104,9 @@ abstract class UITestCase
 	 *
 	 * @param string $key
 	 * @param array $array
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertArrayHasKey(string $key, array $array) : bool
+	protected function assertArrayHasKey(string $key, array $array) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -119,9 +119,9 @@ abstract class UITestCase
 	 *
 	 * @param string $str
 	 * @param int $length
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertLength(string $str, int $length) : bool
+	protected function assertLength(string $str, int $length) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -135,9 +135,9 @@ abstract class UITestCase
 	 * All values between "" or '' are considered strings.
 	 *
 	 * @param string $str
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertIsString(string $str) : bool
+	protected function assertIsString(string $str) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -154,13 +154,32 @@ abstract class UITestCase
 	 * "0" returns true, it's the character "0" not the actual number of 0.
 	 *
 	 * @param mixed $var
-	 * @return boolean
+	 * @return UITestCase
 	 */
-	protected function assertEmpty( $var ) : bool
+	protected function assertEmpty( $var ) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
 										( empty($var) )
+									);
+	}
+
+	/**
+	 * Asserts if $var is NOT empty.
+	 * 
+	 * Any variable that contains "", 0, false, or NULL are considered empty.
+	 * 
+	 * "null" returns false because it's validated as a string with value of "null".
+	 * "0" returns true, it's the character "0" not the actual number of 0.
+	 *
+	 * @param mixed $var
+	 * @return UITestCase
+	 */
+	protected function assertNotEmpty( $var ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( ! empty($var) )
 									);
 	}
 
@@ -183,6 +202,7 @@ abstract class UITestCase
 	assertDirectoryIsReadable()
 	assertDirectoryIsWritable()
 	(*)assertEmpty()
+	(*)assertNotEmpty()
 	assertEquals()
 	assertEqualsCanonicalizing()
 	assertEqualsIgnoringCase()

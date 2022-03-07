@@ -14,8 +14,8 @@ class CarTest_e9f69bb51defb4bff6a680f4981fb4cf extends UITestCase
 	{
 		$car_type = (new Car)->getType();
 
-		$this->assertEmpty($car_type);
-		$this->assertIsString($car_type);
+		$this->assertNotEmpty($car_type)
+			->assertIsString($car_type);
 	}
 
 }
