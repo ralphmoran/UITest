@@ -14,7 +14,7 @@ $tester = new UITester();
 
 // Run all tests
 $tester->all()
-	->outputAssertionResults();
+	->outputAssertionResults(true);
 
 // Only specific tests (string)
 // $tester->only('CarTest_518135355')
