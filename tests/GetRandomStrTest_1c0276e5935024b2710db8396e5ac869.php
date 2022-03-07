@@ -12,18 +12,7 @@ class GetRandomStrTest_1c0276e5935024b2710db8396e5ac869 extends UITestCase
 	 */
 	public function test_return_length_of_3() : void
 	{
-		$this->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 )
-			->assertLength( getRandomStr(3), 3 );
+		$this->assertLength( getRandomStr(3), 3 );
 	}
 	
 }

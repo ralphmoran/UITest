@@ -13,12 +13,12 @@ require_once $dirname . '/examples/classes/classes.php';
 $tester = new UITester();
 
 // Run all tests
-// $tester->all()
-// 	->outputAssertionResults(true);
+$tester->all()
+	->outputAssertionResults(true);
 
 // Only specific tests (string)
-$tester->only('CarTest_e9f69bb51defb4bff6a680f4981fb4cf')
-	->outputAssertionResults(true);
+// $tester->only('CarTest_e9f69bb51defb4bff6a680f4981fb4cf')
+// 	->outputAssertionResults(true);
 
 // Only specific tests (array)
 // $tester->only([
