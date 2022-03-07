@@ -31,3 +31,41 @@ if( ! function_exists('load_env') )
 			} 
 	}
 }
+
+if( ! function_exists("file_loader") )
+{
+	/**
+	 * Class and file autoloader.
+	 * 
+	 * Version: PHP 5 >= 5.1.0, PHP 7, PHP 8
+	 *
+	 * @param string $file
+	 * @throws Exception When $file does not exist.
+	 * @return void
+	 */
+	function file_loader($file) 
+	{
+		$file = ( strpos($file, ".php") === false ) 
+			?  dirname(__FILE__) . '/' . $file . '.php' 
+			: $file;
+
+		# Avoid object injection exploits
+		call_user_func(function () use ( $file ) {
+				ob_start();
+
+				if( ! file_exists( $file ) ){
+					throw new Exception('File: ' . $file . ' does not exist.');
+					ob_end_clean();
+				}
+
+				@require_once $file;
+				
+				ob_end_clean();
+			}
+		);
+	}
+
+	# Registers the autoloader function.
+	spl_autoload_register('file_loader');
+
+}

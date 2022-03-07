@@ -109,9 +109,9 @@ final class UITester {
 	 *
 	 * @return void
 	 */
-	public function outputAssertionResults() : void
+	public function outputAssertionResults( bool $verbose = false ) : void
 	{
-		UIFormatter::formatAndOutput($this->test_results, true);
+		UIFormatter::formatAndOutput($this->test_results, $verbose);
 	}
 
 	/**
@@ -132,23 +132,9 @@ final class UITester {
 
 		if( ! in_array( $test_name, $this->loaded_tests ) ){
 
-			# 
 			$test = $this->path . "/" . $test_name . ".".  $this->extension;
 
-			# Avoid object injection exploits
-			call_user_func(function () use ( $test ) {
-				ob_start();
-
-				if( ! file_exists( $test ) ){
-					throw new Exception('File: ' . $test . ' does not exist.');
-					ob_end_clean();
-					return NULL;
-				}
-
-				@require_once $test;
-				
-				ob_end_clean();
-			});
+			file_loader( $test );
 
 			# Confirm if the test was loaded properly
 			if( ! class_exists( $test_name ) ){

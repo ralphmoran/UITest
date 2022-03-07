@@ -2,9 +2,6 @@
 
 $dirname = dirname(__FILE__);
 
-// Autoloader
-require_once $dirname . '/lib/autoload.php';
-
 // Helper functions
 require_once $dirname . '/lib/helper.functions.php';
 
@@ -17,8 +14,15 @@ $tester = new UITester();
 
 // Run all tests
 $tester->all()
-	->outputAssertionResults();
+	->outputAssertionResults(true);
 
-// Only specific tests
-$tester->only('AirPlaneTest_94c91bedfa9be686afc373100b2e72f5')
-	->outputAssertionResults();
+// Only specific tests (string)
+// $tester->only('AirPlaneTest_94c91bedfa9be686afc373100b2e72f5')
+// 	->outputAssertionResults();
+
+// Only specific tests (array)
+// $tester->only([
+// 		'AirPlaneTest_94c91bedfa9be686afc373100b2e72f5',
+// 		'GetRandomStrTest_1c0276e5935024b2710db8396e5ac869'
+// 	])
+// 	->outputAssertionResults();

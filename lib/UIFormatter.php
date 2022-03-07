@@ -15,11 +15,11 @@ class UIFormatter
 
 		foreach ($tests as $test_name => $test_cases) {
 
-			self::output("\n" . $test_name, "ugreen", false, $verbose);
+			self::setColor("\n" . $test_name, "ugreen", $verbose);
 
 			foreach ($test_cases as $test_case_name => $assertions) {
 
-				self::output("\n" . $test_case_name . "\n", "yellow", false, $verbose);
+				self::setColor("\n" . $test_case_name . "\n", "yellow", $verbose);
 
 				foreach ($assertions as $assertion) {
 
@@ -31,7 +31,7 @@ class UIFormatter
 						$variables .= "$index => " . ( is_array($value) ? json_encode($value) : $value ) . ", ";
 
 						$color = "green";
-						$icon = $check_mark;
+						$icon = $check_mark;	
 
 						if( ! $status ){
 							$assertion_not_passed_counter++;
@@ -39,9 +39,9 @@ class UIFormatter
 							$icon = "x";
 						}
 
-					self::output($icon, $color, false, $verbose);
-					self::output(" " . $name . ":", "white", false, $verbose);
-					self::output(rtrim($variables, ', ') . "\n", "", false, $verbose);
+					self::setColor($icon, $color, $verbose);
+					self::setColor(" " . $name . ":", "white", $verbose);
+					self::setColor(rtrim($variables, ', ') . "\n", "", $verbose);
 
 					flush();
 
@@ -59,39 +59,40 @@ class UIFormatter
 
 		$verbose = true;
 
-		self::output("\nUITest status:", "bgreen", false, $verbose);
+		self::setColor("\nUITest status:", "bgreen", $verbose);
 
 		if ( $assertion_not_passed_counter )
-			self::output(" Failed! \n\n", "bgired", false, $verbose);
+			self::setColor(" Failed! ", "bgired", $verbose);
 
 		if ( $assertion_not_passed_counter == 0 )
-			self::output(" Passed! \n\n", "bigreen", false, $verbose);
+			self::setColor(" Passed! ", "bigreen", $verbose);
 
-		self::output("Total tests:", "yellow", false, $verbose);
-		self::output(" " . $test_counter, "white", false, $verbose);
+		self::setColor("\n\n", "", $verbose);
+		self::setColor("Total tests:", "yellow", $verbose);
+		self::setColor(" " . $test_counter, "white", $verbose);
 
-		self::output(" Total test cases:", "yellow", false, $verbose);
-		self::output(" " . $test_case_counter, "white", false, $verbose);
+		self::setColor(" Total test cases:", "yellow", $verbose);
+		self::setColor(" " . $test_case_counter, "white", $verbose);
 
-		self::output(" Total assertions:", "yellow", false, $verbose);
-		self::output(" " . $assertion_counter, "white", false, $verbose);
+		self::setColor(" Total assertions:", "yellow", $verbose);
+		self::setColor(" " . $assertion_counter, "white", $verbose);
 
-		self::output(" [", "", false, $verbose);
-		self::output("{$check_mark}", "green", false, $verbose);
-		self::output(( $assertion_counter - $assertion_not_passed_counter ), "", false, $verbose);
-		self::output("]", "", false, $verbose);
+		self::setColor(" [", "", $verbose);
+		self::setColor("{$check_mark}", "green", $verbose);
+		self::setColor(( $assertion_counter - $assertion_not_passed_counter ), "", $verbose);
+		self::setColor("]", "", $verbose);
 
-		self::output("[", "", false, $verbose);
-		self::output("x", "red", false, $verbose);
-		self::output("{$assertion_not_passed_counter}", "", false, $verbose);
-		self::output("]\n", "", false, $verbose);
+		self::setColor("[", "", $verbose);
+		self::setColor("x", "red", $verbose);
+		self::setColor("{$assertion_not_passed_counter}", "", $verbose);
+		self::setColor("]\n", "", $verbose);
 	}
 
 
-	public static function output(string $str, 
+	public static function setColor(string $str, 
 								string $color = '', 
-								bool $new_line = false, 
-								bool $verbose = false ) : void
+								bool $verbose = false,
+								bool $new_line = false ) : void
 	{
 		# Special characters
 		$const		= "\033[";
