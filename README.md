@@ -32,28 +32,7 @@ $tester = new UITester();
 $tester->all()
 	->outputAssertionResults(true); // It displays all assertions in detail and the final report
 
-/* 
-$ php index.php
-
-AirPlaneTest_503062783
-test_if_gettype_returns_string_and_no_empty
-✔ assertIsString: str=>jumbo
-✔ assertNotEmpty: var=>jumbo
-
-CarTest_518135355
-test_cartype_is_string_and_not_empty
-✔ assertNotEmpty: var=>truck
-✔ assertIsString: str=>truck
-
-GetRandomStrTest_1218383454
-test_return_length_of_3
-✔ assertLength: str=>bcb, length=>3
-
-test_key_exists_in_array
-✔ assertArrayHasKey: key=>key3, array=>{"key3":null,"key4":1}
-
-UITest status: Passed! 
-*/
+![alt text](https://user-images.githubusercontent.com/5456155/157128649-088ac925-019d-4fe8-af95-17d9e311ac13.png)
 
 // ...
 
