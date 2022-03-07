@@ -3,7 +3,7 @@
 $dirname = dirname(__FILE__);
 
 // Helper functions
-require_once $dirname . '/lib/helper.functions.php';
+require_once $dirname . '/lib/uitest.functions.php';
 
 // Examples
 require_once $dirname . '/examples/functions.php';
@@ -14,15 +14,15 @@ $tester = new UITester();
 
 // Run all tests
 $tester->all()
-	->outputAssertionResults(true);
+	->outputAssertionResults();
 
 // Only specific tests (string)
-// $tester->only('CarTest_e9f69bb51defb4bff6a680f4981fb4cf')
+// $tester->only('CarTest_518135355')
 // 	->outputAssertionResults(true);
 
 // Only specific tests (array)
 // $tester->only([
-// 		'AirPlaneTest_94c91bedfa9be686afc373100b2e72f5',
-// 		'GetRandomStrTest_1c0276e5935024b2710db8396e5ac869'
+// 		'CarTest_518135355',
+// 		'GetRandomStrTest_1218383454'
 // 	])
 // 	->outputAssertionResults();
