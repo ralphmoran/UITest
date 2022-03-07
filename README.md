@@ -31,28 +31,23 @@ $tester = new UITester();
 // Run all tests
 $tester->all()
 	->outputAssertionResults(true); // It displays all assertions in detail and the final report
+	
+//...
 
-![Detailed results and final report](Final%20report.png)
+// Only specific tests (string)
+$tester->only('CarTest_518135355')
+	->outputAssertionResults(true); // It displays all assertions in detail and the final report
+```
+![Detailed results and final report](Details%20and%20final%20report.png)
+
+```php
+
 
 // ...
 
 // Run all tests
 $tester->all()
 	->outputAssertionResults(); // It only displays the final report
-
-/*
-$ php index.php
-
-UITest status: Passed! 
-
-Total tests: 3 Total test cases: 4 Total assertions: 6 [✔6][x0]
-*/
-
-// ...
-
-// Only specific tests (string)
-$tester->only('CarTest_518135355')
-	->outputAssertionResults(true); // It displays all assertions in detail and the final report
 
 // ...
 
@@ -62,7 +57,10 @@ $tester->only([
 		'GetRandomStrTest_1218383454'
 	])
 	->outputAssertionResults(); // It only displays the final report
+
 ```
+![Final report](Final%20report.png)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
