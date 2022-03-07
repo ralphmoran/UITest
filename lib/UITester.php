@@ -14,24 +14,16 @@ final class UITester {
 	/** @var array Valid test extension. */
 	private $extension = 'php';
 
-	/** @var bool Verbose. */
-	private $verbose = false;
-
 	/**
 	 * Initial setup for tests
 	 *
 	 * @param array $config
 	 */
-	public function __construct( $config = array() ){
-
+	public function __construct( $config = array() )
+	{
 		$this->path = ( isset($config['path']) && !empty($config['path']) ) 
 							? $config['path']
 							: $this->path;
-
-		$this->verbose = ( isset($config['verbose']) && !empty($config['verbose']) ) 
-							? $config['verbose']
-							: $this->verbose;
-
 	}
 
 	/**
