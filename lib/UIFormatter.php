@@ -28,7 +28,7 @@ class UIFormatter
 					$variables = '';
 
 					foreach ($args as $index => $value)
-						$variables .= "$index => " . ( is_array($value) ? json_encode($value) : $value ) . ", ";
+						$variables .= "$index=>" . ( is_array($value) ? json_encode($value) : $value ) . ", ";
 
 						$color = "green";
 						$icon = $check_mark;	
@@ -40,7 +40,7 @@ class UIFormatter
 						}
 
 					self::setColor($icon, $color, $verbose);
-					self::setColor(" " . $name . ":", "white", $verbose);
+					self::setColor(" " . $name . ": ", "white", $verbose);
 					self::setColor(rtrim($variables, ', ') . "\n", "", $verbose);
 
 					flush();
