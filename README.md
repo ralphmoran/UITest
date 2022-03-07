@@ -32,7 +32,7 @@ $tester = new UITester();
 $tester->all()
 	->outputAssertionResults(true); // It displays all assertions in detail and the final report
 
-![alt text](https://user-images.githubusercontent.com/5456155/157128649-088ac925-019d-4fe8-af95-17d9e311ac13.png)
+![Detailed results and final report](Final%20report.png)
 
 // ...
 
