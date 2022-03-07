@@ -128,12 +128,16 @@ final class UITester {
 
 			file_loader( $test );
 
-			# Confirm if the test was loaded properly
-			if( ! class_exists( $test_name ) ){
-				throw new Exception('Test: ' . $test_name . ' does not exist.');
-				return NULL;
+			try {
+				# Confirm if the test was loaded properly
+				if( ! class_exists( $test_name ) ){
+					throw new Exception('Test: ' . $test_name . ' does not exist.');
+					return NULL;
+				}
+			} catch (Exception $e){
+				echo $e->getMessage() . "\n";
 			}
-
+			
 			$this->loaded_tests[] = $test_name;
 		}
 

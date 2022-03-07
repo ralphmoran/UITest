@@ -53,13 +53,17 @@ if( ! function_exists("file_loader") )
 		call_user_func(function () use ( $file ) {
 				ob_start();
 
-				if( ! file_exists( $file ) ){
-					throw new Exception('File: ' . $file . ' does not exist.');
-					ob_end_clean();
+				try {
+					if( ! file_exists( $file ) ){
+						throw new Exception('File: ' . $file . ' does not exist.');
+						ob_end_clean();
+					}
+
+					@require_once $file;
+				} catch (Exception $e){
+					echo $e->getMessage() . "\n";
 				}
 
-				@require_once $file;
-				
 				ob_end_clean();
 			}
 		);
