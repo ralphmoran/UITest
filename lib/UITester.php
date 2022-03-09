@@ -71,7 +71,7 @@ final class UITester {
 	 * Sets the general test path.
 	 *
 	 * @param string $path
-	 * @return bolean|Tester
+	 * @return boolean|Tester
 	 */
 	public function setPath( $path )
 	{

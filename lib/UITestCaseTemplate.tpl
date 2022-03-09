@@ -19,8 +19,8 @@ class <%test_name%> extends UITestCase
 	 	 * 
 	 	 * Examples:
 	 	 * 
-	 	 * $this->assertLength( 'abc', 3 ); # true
-	 	 * $this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1)); # true
+	 	 * $this->assertLength( 'abc', 3 ); // true
+	 	 * $this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1)); // true
 		 */
 	}
 	

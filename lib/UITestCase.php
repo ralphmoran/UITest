@@ -73,7 +73,7 @@ abstract class UITestCase
 	 * @param boolean $strict
 	 * @return UITestCase
 	 */
-	protected function assertSame($var1, $var2, $strict = false) : UITestCase
+	protected function assertSame($var1, $var2, bool $strict = false) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
@@ -99,8 +99,7 @@ abstract class UITestCase
 	/**
 	 * Asserts if a key exists in the array.
 	 * 
-	 * It's important to notice that this method will return true even though
-	 * the value of the key is NULL.
+	 * This assertion will return true even though the value of the key is NULL.
 	 *
 	 * @param string $key
 	 * @param array $array
@@ -115,25 +114,24 @@ abstract class UITestCase
 	}
 	
 	/**
-	 * Asserts if a $value exists in $array.
+	 * Asserts if a value exists in $array.
 	 * 
-	 * It's important to notice that this method will return true even though
-	 * the value of the key is NULL.
+	 * If value is a string, the comparison is done in a case-sensitive manner.
 	 *
 	 * @param string $key
-	 * @param array $array
+	 * @param mixed $array
 	 * @return UITestCase
 	 */
-	protected function assertArrayHasValue(string $value, array $array) : UITestCase
+	protected function assertArrayHasValue($value, array $array, bool $strict) : UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										( in_array( $value, $array ) )
+										( in_array( $value, $array, $strict ) )
 									);
 	}
 
 	/**
-	 * Asserts length of a variable as string.
+	 * Asserts length of a string variable.
 	 *
 	 * @param string $str
 	 * @param int $length
@@ -166,10 +164,10 @@ abstract class UITestCase
 	/**
 	 * Asserts if $var is empty.
 	 * 
-	 * Any variable that contains "", 0, false, or NULL are considered empty.
+	 * Any variable that contains "", 0, 0.0, "0", false, array(), or NULL 
+	 * are considered empty.
 	 * 
-	 * "null" returns false because it's validated as a string with value of "null".
-	 * "0" returns true, it's the character "0" not the actual number of 0.
+	 * "null" returns false because it's validated as a string.
 	 *
 	 * @param mixed $var
 	 * @return UITestCase
@@ -185,10 +183,10 @@ abstract class UITestCase
 	/**
 	 * Asserts if $var is NOT empty.
 	 * 
-	 * Any variable that contains "", 0, false, or NULL are considered empty.
+	 * Any variable that contains "", 0, 0.0, "0", false, array(), or NULL 
+	 * are considered empty.
 	 * 
-	 * "null" returns false because it's validated as a string with value of "null".
-	 * "0" returns true, it's the character "0" not the actual number of 0.
+	 * "null" returns true because it's validated as a string.
 	 *
 	 * @param mixed $var
 	 * @return UITestCase
@@ -277,7 +275,7 @@ abstract class UITestCase
 	/**
 	 * Asserts if $value is float type.
 	 * 
-	 * Scientific Notation is treated as float type.
+	 * Scientific notation is treated as float type.
 	 * 
 	 * E.g.:
 	 * 
