@@ -142,7 +142,7 @@ $ php uitest -n=ClassNameX
 OR 
 $ php uitest --name=FunctionNameX
 OR 
-$ php uitest --n=FunctionNameX --e=NameQ
+$ php uitest -n=FunctionNameX -e=NameQ
 OR 
 $ php uitest --name=FunctionNameX --element=NameQ
 ```
