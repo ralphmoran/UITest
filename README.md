@@ -137,17 +137,15 @@ There is a small REPL that helps you to create new test cases, this REPL is `uit
 
 ```
 $ cd uitesting // Or make an alias that point to `php uitest` globally
-
-$ php uitest -n=ClassNameX
-OR 
-$ php uitest --name=FunctionNameX
-OR 
-$ php uitest -n=FunctionNameX -e=NameQ
-OR 
-$ php uitest --name=FunctionNameX --element=NameQ
 ```
 
+
+
 This command will create a new test case, named `ClassNameX`:
+
+```
+$ php uitest -n=ClassNameX
+```
 
 ```php
 class ClassNameXTestCase_518135355 extends UITestCase
@@ -175,7 +173,13 @@ class ClassNameXTestCase_518135355 extends UITestCase
 	}
 	
 }
-...
+```
+
+```
+$ php uitest --name=FunctionNameX
+```
+
+```php
 class FunctionNameXTestCase_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
@@ -201,7 +205,15 @@ class FunctionNameXTestCase_518135355 extends UITestCase
 	}
 	
 }
-...
+```
+
+```
+$ php uitest -n=FunctionNameX -e=NameQ
+OR 
+$ php uitest --name=FunctionNameX --element=NameQ
+```
+
+```php
 class FunctionNameXTestCase_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
