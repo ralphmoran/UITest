@@ -83,7 +83,7 @@ $tester->setPath('/another/real/weird/path/')
 
 ## Usage: How to create a UITestCase
 
-All your test cases must extend from the abstract class UITestCase, define an `$element` (class or function to be tested), and all the tests/methods must start with `test_` and return void. There is a folder name `/tests/` where all your test cases will be saved by default. You can save your tests in any other folder, to execute them you need to specify the path.
+All your test cases must extend from the abstract class UITestCase, define an `$element` (class or function to be tested), and all the tests/methods must start with `test_` and return void. There is a folder named `/tests/` where all your test cases will be saved by default. You can save your tests in any other folder, to execute them you need to specify the path like it was displayed from above.
 
 
 
