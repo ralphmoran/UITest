@@ -1,6 +1,6 @@
 # UITesting
 
-UITesting is an extremely light tool for Unit and Integration testing.
+UITesting is an extremely light tool for Unit and (?)Integration testing.
 
 ## Installation
 
