@@ -7,6 +7,8 @@ UITesting is an extremely light tool for Unit and Integration testing.
 Use the package like another PHP one
 
 ```php
+$dirname = dirname(__FILE__);
+
 // Include this file if you're using all the package
 require_once $dirname . '/lib/uitest.functions.php';
 
