@@ -29,7 +29,7 @@ $tester = new UITester();
 $tester = new UITester("/another/real/weird/path/"); 
 ```
 
-# Run all tests
+## Run all tests
 
 ```php
 /*
@@ -47,9 +47,10 @@ $tester->all()
  */
 $tester->all(["path" => "/another/test/folder/"])
 	->outputAssertionResults(true); 
-	
-// ...
+```
+## Run only specific tests
 
+```php
 /**
  * It runs only `CarTest_518135355` from the default test folder `/tests/` 
  * and display in detail all assertions statuses.
