@@ -113,6 +113,24 @@ abstract class UITestCase
 										( isset($array[$key]) || array_key_exists($key, $array) )
 									);
 	}
+	
+	/**
+	 * Asserts if a $value exists in $array.
+	 * 
+	 * It's important to notice that this method will return true even though
+	 * the value of the key is NULL.
+	 *
+	 * @param string $key
+	 * @param array $array
+	 * @return UITestCase
+	 */
+	protected function assertArrayHasValue(string $value, array $array) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( in_array( $value, $array ) )
+									);
+	}
 
 	/**
 	 * Asserts length of a variable as string.
@@ -183,18 +201,109 @@ abstract class UITestCase
 									);
 	}
 
+	/**
+	 * Asserts the position of the first occurrence of a substring in a string.
+	 *
+	 * @param string $haystack
+	 * @param string $needle
+	 * @return UITestCase
+	 */
+	public function  assertStringContainsString( string $haystack, string $needle ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( strpos($haystack, $needle) === false )
+									);
+	}
 
+	/**
+	 * Asserts the position of the first occurrence of a case-insensitive 
+	 * substring in a string.
+	 *
+	 * @param string $haystack
+	 * @param string $needle
+	 * @return UITestCase
+	 */
+	public function assertStringContainsStringIgnoringCase( string $haystack, string $needle ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( stripos($haystack, $needle) === false )
+									);
+	}
+
+	/**
+	 * Asserts if $value is strictly false.
+	 *
+	 * @param bool $value
+	 * @return UITestCase
+	 */
+	public function assertFalse( $value ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( $value === false )
+									);
+	}
+
+	/**
+	 * Asserts if $value is strictly true.
+	 *
+	 * @param bool $value
+	 * @return UITestCase
+	 */
+	public function assertTrue( $value ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( $value === true )
+									);
+	}
+
+	/**
+	 * Asserts if $value is boolean type.
+	 *
+	 * @param mixed $value
+	 * @return UITestCase
+	 */
+	public function assertIsBool( $value ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( is_bool($value) === true )
+									);
+	}
+
+	/**
+	 * Asserts if $value is float type.
+	 * 
+	 * Scientific Notation is treated as float type.
+	 * 
+	 * E.g.:
+	 * 
+	 * $this->assertIsFloat(1e7);  // true
+	 *
+	 * @param mixed $value
+	 * @return UITestCase
+	 */
+	public function assertIsFloat( $value ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( is_float($value) === true )
+									);
+	}
 
 
 	/*
 
 	(*)assertArrayHasKey()
+	(*)assertArrayHasValue()
 	(*)assertLength()
 	assertClassHasAttribute()
 	assertClassHasStaticAttribute()
-	assertContains()
-	assertStringContainsString()
-	assertStringContainsStringIgnoringCase()
+	(*)assertStringContainsString()
+	(*)assertStringContainsStringIgnoringCase()
 	assertContainsOnly()
 	assertContainsOnlyInstancesOf()
 	assertCount()
@@ -208,7 +317,7 @@ abstract class UITestCase
 	assertEqualsIgnoringCase()
 	assertEqualsWithDelta()
 	assertObjectEquals()
-	assertFalse()
+	(*)assertFalse()
 	assertFileEquals()
 	assertFileExists()
 	assertFileIsReadable()
@@ -218,9 +327,9 @@ abstract class UITestCase
 	assertInfinite()
 	assertInstanceOf()
 	assertIsArray()
-	assertIsBool()
+	(*)assertIsBool()
 	assertIsCallable()
-	assertIsFloat()
+	(*)assertIsFloat()
 	assertIsInt()
 	assertIsIterable()
 	assertIsNumeric()
@@ -247,7 +356,7 @@ abstract class UITestCase
 	assertStringEqualsFile()
 	assertStringStartsWith()
 	assertThat()
-	assertTrue()
+	(*)assertTrue()
 	assertXmlFileEqualsXmlFile()
 	assertXmlStringEqualsXmlFile()
 	assertXmlStringEqualsXmlString()

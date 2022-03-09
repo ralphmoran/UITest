@@ -8,7 +8,7 @@ class <%test_name%> extends UITestCase
 	/**
 	 * Tests if '<%element_name%>'...
 	 *
-	 * All test cases MUST START WITH "test_".
+	 * All tests MUST START WITH "test_".
 	 *
 	 * @return void
 	 */

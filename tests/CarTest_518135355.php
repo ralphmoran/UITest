@@ -10,12 +10,27 @@ class CarTest_518135355 extends UITestCase
 	 *
 	 * @return void
 	 */
-	public function test_cartype_is_string_and_not_empty()
+	public function test_cartype_is_string_and_not_empty() : void
 	{
 		$car_type = (new Car)->getType();
 
 		$this->assertNotEmpty($car_type)
 			->assertIsString($car_type);
+	}
+
+	/**
+	 * Tests if values are float type.
+	 *
+	 * @return void
+	 */
+	public function test_if_value_is_float() : void
+	{
+		$this->assertIsFloat(27.25);
+		$this->assertIsFloat('abc');
+		$this->assertIsFloat(23);
+		$this->assertIsFloat(23.5);
+		$this->assertIsFloat(1e7);  // Scientific Notation
+		$this->assertIsFloat(true);
 	}
 	
 }
