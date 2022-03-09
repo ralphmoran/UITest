@@ -10,7 +10,7 @@ Use the package like another PHP one
 // Include this file if you're using all the package
 require_once $dirname . '/lib/uitest.functions.php';
 
-// 
+// Your code here
 
 ```
 
@@ -84,9 +84,7 @@ $tester->setPath('/another/real/weird/path/')
 
 ## Usage: How to create a UITestCase
 
-All your test cases must extend from the abstract class UITestCase, define an `$element` (class or function to be tested), and all the tests/methods must start with `test_` and return void. There is a folder named `/tests/` where all your test cases will be saved by default. You can save your tests in any other folder, to execute them you need to specify the path like it was displayed from above.
-
-
+All your test cases must extend from the abstract class `UITestCase`, define the `$element` (class or function to be tested), and all the tests/methods must start with `test_` and return void. There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uitest`. You can save your tests in any other folder, to execute them you need to specify the path like it was displayed from above.
 
 ```php
 // Create a UITesCase
