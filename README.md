@@ -95,7 +95,7 @@ There is a folder named `/tests/` where all your test cases will be saved by def
 require_once $dirname . '/lib/UITestCase.php';
 
 // New test case needs to extend from abstract class UITestCase.
-class CarTest extends UITestCase
+class CarTestCase extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
 	protected $element = 'Car';
@@ -141,12 +141,16 @@ $ cd uitesting // Or make an alias that point to `php uitest` globally
 $ php uitest -n=ClassNameX
 OR 
 $ php uitest --name=FunctionNameX
+OR 
+$ php uitest --n=FunctionNameX --e=NameQ
+OR 
+$ php uitest --name=FunctionNameX --element=NameQ
 ```
 
 This command will create a new test case, named `ClassNameX`:
 
 ```php
-class ClassNameXTest_518135355 extends UITestCase
+class ClassNameXTestCase_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
 	protected $element = 'ClassNameX';
@@ -172,13 +176,39 @@ class ClassNameXTest_518135355 extends UITestCase
 	
 }
 ...
-class FunctionNameXTest_518135355 extends UITestCase
+class FunctionNameXTestCase_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
 	protected $element = 'FunctionNameX';
 
 	/**
 	 * Tests if 'FunctionNameX'...
+	 *
+	 * All tests MUST START WITH "test_".
+	 *
+	 * @return void
+	 */
+	public function test_() : void
+	{
+		/**
+		 * Read ./lib/UITestCase.php file regarding assertions.
+	 	 * 
+	 	 * Examples:
+	 	 * 
+	 	 * $this->assertLength( 'abc', 3 ); # true
+	 	 * $this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1)); # true
+		 */
+	}
+	
+}
+...
+class FunctionNameXTestCase_518135355 extends UITestCase
+{
+	/** @var string Name of the class or function to be used on this test. */
+	protected $element = 'NameQ';
+
+	/**
+	 * Tests if 'NameQ'...
 	 *
 	 * All tests MUST START WITH "test_".
 	 *
