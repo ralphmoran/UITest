@@ -6,7 +6,7 @@ abstract class UITestCase
 	protected $element = '';
 
 	/** @var array Assertion statuses. */
-	private $assertion_status = array();
+	private $assertion_status = [];
 
 	/**
 	 * Method run() will perform all assertions from UITestCase instances.
@@ -25,7 +25,7 @@ abstract class UITestCase
 
 		$test_case = get_class(debug_backtrace()[0]['object']);
 
-		$this->assertion_status[ $test_case ] = array(); 
+		$this->assertion_status[ $test_case ] = []; 
 
 		foreach( get_class_methods($test_case) as $method )
 			if( strpos($method, 'test_') === 0 )
@@ -164,7 +164,7 @@ abstract class UITestCase
 	/**
 	 * Asserts if $var is empty.
 	 * 
-	 * Any variable that contains "", 0, 0.0, "0", false, array(), or NULL 
+	 * Any variable that contains "", 0, 0.0, "0", false, [], or NULL 
 	 * are considered empty.
 	 * 
 	 * "null" returns false because it's validated as a string.
@@ -183,7 +183,7 @@ abstract class UITestCase
 	/**
 	 * Asserts if $var is NOT empty.
 	 * 
-	 * Any variable that contains "", 0, 0.0, "0", false, array(), or NULL 
+	 * Any variable that contains "", 0, 0.0, "0", false, [], or NULL 
 	 * are considered empty.
 	 * 
 	 * "null" returns true because it's validated as a string.
@@ -268,7 +268,7 @@ abstract class UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										( is_bool($value) === true )
+										is_bool($value)
 									);
 	}
 
@@ -288,7 +288,64 @@ abstract class UITestCase
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										( is_float($value) === true )
+										is_float($value)
+									);
+	}
+
+	/**
+	 * Asserts if $array has same $count of elements.
+	 *
+	 * @param array $array
+	 * @param integer $count
+	 * @return UITestCase
+	 */
+	public function assertCount( array $array, int $count ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( is_array($array) ? count($array) == $count : false )
+									);
+	}
+
+	/**
+	 * Asserts if $dir exists.
+	 *
+	 * @param string $dir
+	 * @return UITestCase
+	 */
+	public function assertDirectoryExists( string $dir ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										is_dir($dir)
+									);
+	}
+
+	/**
+	 * Asserts if $idr is readable.
+	 *
+	 * @param string $dir
+	 * @return UITestCase
+	 */
+	public function assertDirectoryIsReadable( string $dir ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										is_readable($dir)
+									);
+	}
+
+	/**
+	 * Asserts if $idr is writable.
+	 *
+	 * @param string $dir
+	 * @return UITestCase
+	 */
+	public function assertDirectoryIsWritable( string $dir ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										is_writable($dir)
 									);
 	}
 
@@ -304,10 +361,10 @@ abstract class UITestCase
 	(*)assertStringContainsStringIgnoringCase()
 	assertContainsOnly()
 	assertContainsOnlyInstancesOf()
-	assertCount()
-	assertDirectoryExists()
-	assertDirectoryIsReadable()
-	assertDirectoryIsWritable()
+	(*)assertCount()
+	(*)assertDirectoryExists()
+	(*)assertDirectoryIsReadable()
+	(*)assertDirectoryIsWritable()
 	(*)assertEmpty()
 	(*)assertNotEmpty()
 	assertEquals()

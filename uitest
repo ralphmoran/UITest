@@ -10,12 +10,12 @@ load_env();
 
 $sopts  = "m:n:e:p::"; // make:name:element:path::
 
-$lopts  = array(
+$lopts  = [
 	"make:",
 	"name:",
 	"element:",
 	"path::",
-);
+];
 
 // Get options from CLI
 $options = getopt($sopts, $lopts);
@@ -37,10 +37,10 @@ $new_test_case 	= str_replace(array(
 							"<%test_name%>", 
 							"<%element_name%>", 
 						),
-						array(
+						[
 							$test_name,
 							$name, 
-						),
+						],
 						file_get_contents(env('TEST_CASE_TEMPLATE'))
 					);
 
