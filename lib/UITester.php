@@ -9,7 +9,7 @@ final class UITester {
 	private $path = './tests';
 
 	/** @var array Keeps all the test results. */
-	private $test_results = array();
+	private $test_results = [];
 
 	/** @var array Valid test extension. */
 	private $extension = 'php';
@@ -19,7 +19,7 @@ final class UITester {
 	 *
 	 * @param array $config
 	 */
-	public function __construct( $config = array() )
+	public function __construct( $config = [] )
 	{
 		$this->path = ( isset($config['path']) && !empty($config['path']) ) 
 							? $config['path']
