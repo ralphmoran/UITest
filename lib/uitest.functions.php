@@ -22,7 +22,7 @@ if( ! function_exists('load_env') )
 	 *
 	 * @return void
 	 */
-	function load_env()
+	function load_env() : void
 	{
 		try{
 			if( file_exists('./.env') ){
@@ -44,41 +44,72 @@ if( ! function_exists('load_env') )
 if( ! function_exists("file_loader") )
 {
 	/**
-	 * Class and file autoloader.
+	 * Class, trait, and file autoloader.
 	 * 
 	 * Version: PHP 5 >= 5.1.0, PHP 7, PHP 8
 	 *
 	 * @param string $file
-	 * @throws Exception When $file does not exist.
 	 * @return void
 	 */
-	function file_loader($file) 
+	function file_loader( $file ) : void
 	{
-		$file = ( strpos($file, ".php") === false ) 
-			?  dirname(__FILE__) . '/' . $file . '.php' 
-			: $file;
+		// Path + filename + extension
+		$file_stream = stream_resolve_include_path( $file );
 
-		# Avoid object injection exploits
-		call_user_func(function () use ( $file ) {
-				ob_start();
+		if( $file_stream === false ) {
 
-				try {
-					if( ! file_exists( $file ) ){
-						throw new Exception('File: ' . $file . ' does not exist.');
-						ob_end_clean();
-					}
+			// Class name
+			$file_stream = stream_resolve_include_path( dirname(__FILE__) . '/classes/' . $file . '.php' );
 
-					@require_once $file;
-				} catch (Exception $e){
-					echo $e->getMessage() . "\n";
-				}
+			if( $file_stream === false ) {
 
-				ob_end_clean();
+				// Trait name
+				$file_stream = stream_resolve_include_path( dirname(__FILE__) . '/traits/' . $file . '.php' );
+
+				if( $file_stream === false )
+					return;
+
 			}
-		);
+
+		}
+
+		uiloader($file_stream);
+
 	}
 
 	// Registers the autoloader function.
 	spl_autoload_register('file_loader');
 
+}
+
+if( ! function_exists("uiloader") )
+{
+	/**
+	 * Loads a file if exists.
+	 *
+	 * @param string $file
+	 * @throws Exception When $file does not exist.
+	 * @return void
+	 */
+	function uiloader( $file ) : void
+	{
+		# Avoid object injection exploits
+		call_user_func(function () use ( $file ) {
+			ob_start();
+
+			try {
+				if( ! file_exists( $file ) ){
+					throw new Exception('File: ' . $file . ' does not exist.');
+					ob_end_clean();
+				}
+
+				@require_once $file;
+			} catch (Exception $e){
+				echo $e->getMessage() . "\n";
+			}
+
+			ob_end_clean();
+		}
+	);
+	}
 }
