@@ -6,7 +6,7 @@ final class UITester {
 	private $loaded_tests = [];
 
 	/** @var string Where all the test classes live in. */
-	private $path = './tests';
+	private $path = '';
 
 	/** @var array Keeps all the test results. */
 	private $test_results = [];
@@ -23,7 +23,7 @@ final class UITester {
 	{
 		$this->path = ( isset($config['path']) && !empty($config['path']) ) 
 							? $config['path']
-							: $this->path;
+							: env('PATH_TESTS');
 	}
 
 	/**
@@ -127,16 +127,6 @@ final class UITester {
 			$test = $this->path . "/" . $test_name . ".".  $this->extension;
 
 			file_loader( $test );
-
-			try {
-				# Confirm if the test was loaded properly
-				if( ! class_exists( $test_name ) ){
-					throw new Exception('Test: ' . $test_name . ' does not exist.');
-					return NULL;
-				}
-			} catch (Exception $e){
-				echo $e->getMessage() . "\n";
-			}
 			
 			$this->loaded_tests[] = $test_name;
 		}

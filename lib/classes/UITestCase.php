@@ -74,6 +74,8 @@ abstract class UITestCase
 	###############################################################
 
 
+	
+
 	/*
 
 	(*)assertArrayHasKey()
@@ -97,10 +99,10 @@ abstract class UITestCase
 	assertEqualsWithDelta()
 	assertObjectEquals()
 	(*)assertFalse()
-	assertFileEquals()
-	assertFileExists()
-	assertFileIsReadable()
-	assertFileIsWritable()
+	(*)assertFileEquals()
+	(*)assertFileExists()
+	(*)assertFileIsReadable()
+	(*)assertFileIsWritable()
 	assertGreaterThan()
 	assertGreaterThanOrEqual()
 	assertInfinite()

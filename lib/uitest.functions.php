@@ -54,27 +54,31 @@ if( ! function_exists("file_loader") )
 	function file_loader( $file ) : void
 	{
 		// Path + filename + extension
-		$file_stream = stream_resolve_include_path( $file );
+		$file_tmp = $file;
 
-		if( $file_stream === false ) {
+		if( is_file( $file_tmp ) === false ) {
 
 			// Class name
-			$file_stream = stream_resolve_include_path( dirname(__FILE__) . '/classes/' . $file . '.php' );
+			$file_tmp = dirname(__FILE__) . '/classes/' . $file . '.php';
 
-			if( $file_stream === false ) {
+			if( is_file( $file_tmp ) === false ) {
 
 				// Trait name
-				$file_stream = stream_resolve_include_path( dirname(__FILE__) . '/traits/' . $file . '.php' );
+				$file_tmp = dirname(__FILE__) . '/traits/' . $file . '.php';
 
-				if( $file_stream === false )
-					return;
+				if( is_file( $file_tmp ) === false ){
+					try {
+						throw new Exception('File: ' . $file . ' does not exist.');
+					} catch (Exception $e){
+						echo UIFormatter::setColor(" ERROR ", "bgred", true) . " " . $e->getMessage() . "\n";
+					}
+				}
+					
 
 			}
-
 		}
 
-		uiloader($file_stream);
-
+		uiloader($file_tmp);
 	}
 
 	// Registers the autoloader function.
@@ -95,21 +99,10 @@ if( ! function_exists("uiloader") )
 	{
 		# Avoid object injection exploits
 		call_user_func(function () use ( $file ) {
-			ob_start();
-
-			try {
-				if( ! file_exists( $file ) ){
-					throw new Exception('File: ' . $file . ' does not exist.');
-					ob_end_clean();
-				}
-
+				ob_start();
 				@require_once $file;
-			} catch (Exception $e){
-				echo $e->getMessage() . "\n";
+				ob_end_clean();
 			}
-
-			ob_end_clean();
-		}
-	);
+		);
 	}
 }
