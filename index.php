@@ -1,9 +1,13 @@
 <?php
 
+
 $dirname = dirname(__FILE__);
 
 // Helper functions
 require_once $dirname . '/lib/uitest.functions.php';
+
+// Load global config
+load_env();
 
 // Examples
 require_once $dirname . '/examples/functions.php';
