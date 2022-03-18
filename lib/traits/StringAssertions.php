@@ -78,4 +78,39 @@ trait StringAssertions
 										( strlen($str) === $length )
 									);
 	}
+
+	/**
+	 * Asserts if $haystack starts with $needle.
+	 * 
+	 * Note that this assertion is case-sensitive and binary safe.
+	 *
+	 * @param string $haystack
+	 * @param string $needle
+	 * @return UITestCase
+	 */
+	public function assertStringStartsWith( string $haystack, string $needle ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( strncmp( $haystack, $needle, 0, strlen($needle) ) === 0 )
+									);
+	}
+
+	/**
+	 * Asserts if $haystack ends with $needle.
+	 * 
+	 * Note that this assertion is case-sensitive and binary safe.
+	 *
+	 * @param string $haystack
+	 * @param string $needle
+	 * @return UITestCase
+	 */
+	public function assertStringEndsWith( string $haystack, string $needle ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										( strncmp( $haystack, $needle, -strlen($needle) ) === 0 )
+									);
+	}
 }
+
