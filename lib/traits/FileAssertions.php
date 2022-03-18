@@ -26,7 +26,7 @@ trait FileAssertions
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										is_readable($dir)
+										( is_dir($dir) &&  is_readable($dir) )
 									);
 	}
 
@@ -40,7 +40,7 @@ trait FileAssertions
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										is_writable($dir)
+										( is_dir($dir) && is_writable($dir) )
 									);
 	}
 
@@ -87,7 +87,7 @@ trait FileAssertions
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										is_readable( $file )
+										( is_file($file) && is_readable( $file ) )
 									);
 	}
 
@@ -104,7 +104,7 @@ trait FileAssertions
 	{
 		return $this->logAssertionStatus(__FUNCTION__, 
 										get_defined_vars(), 
-										is_writable( $file )
+										( is_file($file) && is_writable( $file ) )
 									);
 	}
 }

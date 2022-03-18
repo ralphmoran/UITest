@@ -50,4 +50,18 @@ trait ArrayAssertions
 										( is_array($array) ? count($array) == $count : false )
 									);
 	}
+
+	/**
+	 * Asserts if $array is array type.
+	 *
+	 * @param [type] $array
+	 * @return UITestCase
+	 */
+	public function assertIsArray( $array ) : UITestCase
+	{
+		return $this->logAssertionStatus(__FUNCTION__, 
+										get_defined_vars(), 
+										is_array( $array )
+									);
+	}
 }

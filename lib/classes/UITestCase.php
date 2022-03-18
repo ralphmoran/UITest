@@ -69,79 +69,20 @@ abstract class UITestCase
 		return $this->assertion_status;
 	}
 	
-	###############################################################
-	/** Assertions */
-	###############################################################
-
-
-	
-
 	/*
-
-	(*)assertArrayHasKey()
-	(*)assertArrayHasValue()
-	(*)assertLength()
 	assertClassHasAttribute()
 	assertClassHasStaticAttribute()
-	(*)assertStringContainsString()
-	(*)assertStringContainsStringIgnoringCase()
 	assertContainsOnly()
 	assertContainsOnlyInstancesOf()
-	(*)assertCount()
-	(*)assertDirectoryExists()
-	(*)assertDirectoryIsReadable()
-	(*)assertDirectoryIsWritable()
-	(*)assertEmpty()
-	(*)assertNotEmpty()
-	assertEquals()
 	assertEqualsCanonicalizing()
 	assertEqualsIgnoringCase()
-	assertEqualsWithDelta()
 	assertObjectEquals()
-	(*)assertFalse()
-	(*)assertFileEquals()
-	(*)assertFileExists()
-	(*)assertFileIsReadable()
-	(*)assertFileIsWritable()
-	assertGreaterThan()
-	assertGreaterThanOrEqual()
 	assertInfinite()
 	assertInstanceOf()
-	assertIsArray()
-	(*)assertIsBool()
-	assertIsCallable()
-	(*)assertIsFloat()
-	assertIsInt()
 	assertIsIterable()
-	assertIsNumeric()
-	assertIsObject()
-	assertIsResource()
-	assertIsScalar()
-	(*)assertIsString()
-	assertIsReadable()
-	assertIsWritable()
-	assertJsonFileEqualsJsonFile()
-	assertJsonStringEqualsJsonFile()
-	assertJsonStringEqualsJsonString()
-	assertLessThan()
-	assertLessThanOrEqual()
-	assertNan()
-	assertNull()
 	assertObjectHasAttribute()
 	assertMatchesRegularExpression()
-	assertStringMatchesFormat()
-	assertStringMatchesFormatFile()
-	(*)assertSame()
-	(*)assertSameSize()
-	assertStringEndsWith()
-	assertStringEqualsFile()
-	assertStringStartsWith()
 	assertThat()
-	(*)assertTrue()
-	assertXmlFileEqualsXmlFile()
-	assertXmlStringEqualsXmlFile()
-	assertXmlStringEqualsXmlString()
- 	
 	*/
 	
 }
