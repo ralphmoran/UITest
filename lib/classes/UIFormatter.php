@@ -2,24 +2,23 @@
 
 class UIFormatter
 {
+	public static $check_mark = "\xE2\x9C\x94";
+
 	public static function formatAndOutput( array $tests, bool $verbose = false )
 	{
-		# Special characters
-		$check_mark		= "\xE2\x9C\x94";
-
 		$test_counter 		= 0;
 		$test_case_counter 	= 0;
 		$assertion_counter 	= 0;
 
 		$assertion_not_passed_counter = 0;
 
-		foreach ($tests as $test_name => $test_cases) {
+		foreach ($tests as $test_case_name => $test_cases) {
 
-			self::setColor("\n" . $test_name, "ugreen", $verbose);
+			// self::setColor("\n" . $test_case_name . "\n", "bgreen", $verbose);
 
-			foreach ($test_cases as $test_case_name => $assertions) {
+			foreach ($test_cases as $test_name => $assertions) {
 
-				self::setColor("\n" . $test_case_name . "\n", "yellow", $verbose);
+				// self::setColor("\n" . $test_name . "\n\n", "yellow", $verbose);
 
 				foreach ($assertions as $assertion) {
 
@@ -31,7 +30,7 @@ class UIFormatter
 						$variables .= "$index=>" . ( is_array($value) ? json_encode($value) : $value ) . ", ";
 
 						$color = "green";
-						$icon = $check_mark;	
+						$icon = self::$check_mark;	
 
 						if( ! $status ){
 							$assertion_not_passed_counter++;
@@ -39,9 +38,9 @@ class UIFormatter
 							$icon = "x";
 						}
 
-					self::setColor($icon, $color, $verbose);
-					self::setColor(" " . $name . ": ", "white", $verbose);
-					self::setColor(rtrim($variables, ', ') . "\n", "", $verbose);
+					// self::setColor($icon, $color, $verbose);
+					// self::setColor(" " . $name . ": ", "white", $verbose);
+					// self::setColor(rtrim($variables, ', ') . "\n", "", $verbose);
 
 					flush();
 
@@ -59,7 +58,7 @@ class UIFormatter
 
 		$verbose = true;
 
-		self::setColor("\nUITest status:", "bgreen", $verbose);
+		self::setColor("\n\nUITest status:", "bgreen", $verbose);
 
 		if ( $assertion_not_passed_counter )
 			self::setColor(" Failed! ", "bgired", $verbose);
@@ -68,10 +67,10 @@ class UIFormatter
 			self::setColor(" Passed! ", "bigreen", $verbose);
 
 		self::setColor("\n\n", "", $verbose);
-		self::setColor("Total tests:", "yellow", $verbose);
+		self::setColor("Total test cases:", "yellow", $verbose);
 		self::setColor(" " . $test_counter, "white", $verbose);
 
-		self::setColor(" Total test cases:", "yellow", $verbose);
+		self::setColor(" Total tests:", "yellow", $verbose);
 		self::setColor(" " . $test_case_counter, "white", $verbose);
 
 		self::setColor(" Total assertions:", "yellow", $verbose);
@@ -94,6 +93,8 @@ class UIFormatter
 								bool $verbose = false,
 								bool $new_line = false ) : void
 	{
+		$check_mark		= "\xE2\x9C\x94";
+
 		# Special characters
 		$const		= "\033[";
 		$coff		= "{$const}0m";

@@ -8,22 +8,36 @@ final class UITester {
 	/** @var string Where all the test classes live in. */
 	private $path = '';
 
-	/** @var array Keeps all the test results. */
-	private $test_results = [];
-
 	/** @var array Valid test extension. */
 	private $extension = 'php';
+
+	/** @var integer Total test cases. */
+	private $total_test_cases = 0;
+
+	/** @var integer Total tests. */
+	private $total_tests = 0;
+
+	/** @var integer Total assertions. */
+	private $total_assertions = 0;
+
+	/** @var integer Total assertions failed. */
+	private $total_assertions_failed = 0;
+
+	/** @var boolean Verbose. */
+	private $verbose = false;
 
 	/**
 	 * Initial setup for tests
 	 *
-	 * @param array $config
+	 * @param array $opts
 	 */
-	public function __construct( $config = [] )
+	public function __construct( $opts = [] )
 	{
-		$this->path = ( isset($config['path']) && !empty($config['path']) ) 
-							? $config['path']
+		$this->path = ( isset($opts['path']) && !empty($opts['path']) ) 
+							? $opts['path']
 							: env('PATH_TESTS');
+
+		$this->verbose = isset($opts['verbose']) ? $opts['verbose'] : false;
 	}
 
 	/**
@@ -34,11 +48,14 @@ final class UITester {
 	 */
 	public function all( string $path = '' )
 	{
-		if( ! empty($this->path) )
+		if( ! empty($path) )
 			$this->setPath($path);
 
 		foreach(glob($this->path . '/*' . $this->extension) as $test)
 			$this->only($test);
+
+		if( $this->verbose )
+			$this->outputTestResults();
 
 		return $this;
 	}
@@ -57,12 +74,16 @@ final class UITester {
 		if( is_string( $tests ) )
 			$tests = array($tests);
 
-		foreach($tests as $test)
-			$this->registerTestResult( 
+		foreach($tests as $test){
+			$this->logTestCaseResults( 
 				$this->load_test( $test )
-					->run()
-					->getAssertionStatus()
+					->run(['verbose' => $this->verbose])
+					->getTestCaseResults()
 			);
+		}
+
+		if( $this->verbose )
+			$this->outputTestResults();
 
 		return $this;
 	}
@@ -90,20 +111,56 @@ final class UITester {
 	 */
 	public function getTestResults() : array
 	{
-		return $this->test_results;
+		return [
+			'test_cases'       => $this->total_test_cases,
+			'tests'            => $this->total_tests,
+			'assertions'       => $this->total_assertions,
+			'assertion_failed' => $this->total_assertions_failed
+		];
 	}
 
 	/**
-	 * Outputs assertion results.
+	 * Outputs test results.
 	 * 
-	 * By default, verbose is true and will output all assertion status 
+	 * By default, verbose is false and will not output assertion status 
 	 * as they run.
 	 *
 	 * @return void
 	 */
-	public function outputAssertionResults( bool $verbose = false ) : void
+	public function outputTestResults() : void
 	{
-		UIFormatter::formatAndOutput($this->test_results, $verbose);
+		UIFormatter::setColor("\n\nUITest status:", "bgreen", $this->verbose);
+
+		if ( $this->total_assertions_failed )
+			UIFormatter::setColor(" Failed! ", "bgired", $this->verbose);
+
+		if ( $this->total_assertions_failed == 0 )
+			UIFormatter::setColor(" Passed! ", "bigreen", $this->verbose);
+
+		UIFormatter::setColor("\n\n", "", $this->verbose);
+		UIFormatter::setColor("Total test cases:", "yellow", $this->verbose);
+		UIFormatter::setColor(" " . $this->total_test_cases, "white", $this->verbose);
+
+		UIFormatter::setColor(" Total tests:", "yellow", $this->verbose);
+		UIFormatter::setColor(" " . $this->total_tests, "white", $this->verbose);
+
+		UIFormatter::setColor(" Total assertions:", "yellow", $this->verbose);
+		UIFormatter::setColor(" " . $this->total_assertions, "white", $this->verbose);
+
+		UIFormatter::setColor(" [", "", $this->verbose);
+		UIFormatter::setColor(UIFormatter::$check_mark, "green", $this->verbose);
+		UIFormatter::setColor(( $this->total_assertions - $this->total_assertions_failed ), "", $this->verbose);
+		UIFormatter::setColor("]", "", $this->verbose);
+
+		UIFormatter::setColor("[", "", $this->verbose);
+		UIFormatter::setColor("x", "red", $this->verbose);
+		UIFormatter::setColor("{$this->total_assertions_failed}", "", $this->verbose);
+		UIFormatter::setColor("]\n", "", $this->verbose);
+
+		// Signature
+		UIFormatter::setColor("\nUITest v0.0", "bgdray", $this->verbose);
+		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray", $this->verbose);
+		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray", $this->verbose);
 	}
 
 	/**
@@ -149,15 +206,21 @@ final class UITester {
 	}
 
 	/**
-	 * Registers the individual test result into $this->test_results array.
+	 * Logs all totals from the test.
 	 *
-	 * @param array $result
+	 * @param array $results
 	 * @return void
 	 */
-	private function registerTestResult( array $result ) : void
+	private function logTestCaseResults( array $results ) : void
 	{
-		if( ! empty($result) )
-			$this->test_results = array_merge($this->test_results, $result);
+		if( empty($results) )
+			return;
+
+		$this->total_test_cases++;
+		$this->total_tests += $results['tests'];
+		$this->total_assertions += $results['assertions'];
+		$this->total_assertions_failed += $results['assertions_failed'];
+
 	}
 
 }

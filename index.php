@@ -14,19 +14,16 @@ require_once $dirname . '/examples/functions.php';
 require_once $dirname . '/examples/classes/classes.php';
 
 // Use case
-$tester = new UITester();
+$tester = new UITester(['verbose' => true]);
 
 // Run all tests
-$tester->all()
-	->outputAssertionResults(true);
+// $tester->all();
 
 // Only specific tests (string)
-// $tester->only('CarTest_518135355')
-// 	->outputAssertionResults(true);
+// $tester->only('CarTest_518135355');
 
 // Only specific tests (array)
 // $tester->only([
 // 		'CarTest_518135355',
 // 		'GetRandomStrTest_1218383454'
-// 	])
-// 	->outputAssertionResults();
+// 	]);
