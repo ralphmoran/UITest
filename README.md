@@ -23,12 +23,15 @@ require_once $dirname . '/lib/uitest.functions.php';
 require_once $dirname . '/lib/UITester.php';
 
 // Use case
-$tester = new UITester();
+$tester = new UITester(); // It runs all test from env('PATH_TESTS'), results are not displayed.
 
 // Or
 
 // It's run all tests from `/another/real/weird/path/`
-$tester = new UITester("/another/real/weird/path/"); 
+$tester = new UITester([
+						"path" => "/another/real/weird/path/",
+						"verbose" => true,
+					]); 
 ```
 
 ## Run all tests
@@ -38,8 +41,7 @@ $tester = new UITester("/another/real/weird/path/");
  * It runs all test cases from the default test folder `/tests/` 
  * and display in detail all assertions statuses.
  */
-$tester->all()
-	->outputAssertionResults(true); 
+$tester->all(); 
 	
 // ...
 
@@ -47,8 +49,7 @@ $tester->all()
  * It runs all test cases from the default test folder `/another/test/folder/` 
  * and display in detail all assertions statuses.
  */
-$tester->all(["path" => "/another/test/folder/"])
-	->outputAssertionResults(true); 
+$tester->all("/another/test/folder/"); 
 ```
 ## Run only specific tests
 
@@ -57,8 +58,7 @@ $tester->all(["path" => "/another/test/folder/"])
  * It runs only `CarTest_518135355` from the default test folder `/tests/` 
  * and display in detail all assertions statuses.
  */
-$tester->only('CarTest_518135355')
-	->outputAssertionResults(true); 
+$tester->only('CarTest_518135355'); 
 
 // ...
 
@@ -70,8 +70,7 @@ $tester->only('CarTest_518135355')
 $tester->only([
 		'CarTest_518135355',
 		'GetRandomStrTest_1218383454'
-	])
-	->outputAssertionResults(true); 
+	]); 
 
 // ...
 
@@ -80,8 +79,7 @@ $tester->only([
  * `/another/real/weird/path/` and display in detail all assertions statuses.
  */
 $tester->setPath('/another/real/weird/path/')
-	->only('CarTest_518135355')
-	->outputAssertionResults(true); 
+	->only('CarTest_518135355'); 
 ```
 
 ## Usage: How to create a UITestCase
@@ -257,30 +255,21 @@ require_once $dirname . '/examples/functions.php';
 require_once $dirname . '/examples/classes/classes.php';
 
 // Use case
-$tester = new UITester();
+$tester = new UITester(['verbose' => true]); // It displays all assertions in detail
 
 // ...
 
 // Run all tests
-$tester->all()
-	->outputAssertionResults(true); // It displays all assertions in detail and the final report
+$tester->all();
 	
 //...
 
 // Only specific tests (string)
-$tester->only('CarTest_518135355')
-	->outputAssertionResults(true); // It displays all assertions in detail and the final report
+$tester->only('CarTest_518135355');
 ```
 ![Detailed results and final report](Details%20and%20final%20report.png)
 
 ```php
-
-
-// ...
-
-// Run all tests
-$tester->all()
-	->outputAssertionResults(); // It only displays the final report
 
 // ...
 
@@ -288,8 +277,7 @@ $tester->all()
 $tester->only([
 		'CarTest_518135355',
 		'GetRandomStrTest_1218383454'
-	])
-	->outputAssertionResults(); // It only displays the final report
+	]);
 
 ```
 ![Final report](Final%20report.png)
