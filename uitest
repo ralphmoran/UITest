@@ -1,5 +1,6 @@
 <?php 
 
+// Only works in terminal mode.
 if ( ! defined('STDIN') )
 	exit;
 
@@ -11,28 +12,28 @@ load_env();
 $sopts  = "m:n:e:p::"; // make:name:element:path::
 
 $lopts  = [
-	"make:",
+	"make:",	// TODO: Add support for different types of creations.
 	"name:",
 	"element:",
-	"path::",
+	"path::",	// TODO: Add support to place the new test case in a custom path.
 ];
 
 // Get options from CLI
 $options = getopt($sopts, $lopts);
 
+// Extract options: make|m, name|n, element|e, path|p
 extract($options);
 
 $path_tests 	= ( ! empty($path) ) ? $path : env('PATH_TESTS');
-
 $name 			= ( isset($n) ) ? $n : ( isset($name) ? $name : "" );
-
 $element 		= ( isset($element) ) ? $element : ( isset($e) ? $e : $name ) ;
-
 $test_name 		= $name . "TestCase_" . time() . mt_rand(0, 100);
 
+// Replace name for element
 if( isset($element) )
 	$name = $element;
 
+// Replace tags in template
 $new_test_case 	= str_replace(array(
 							"<%test_name%>", 
 							"<%element_name%>", 
