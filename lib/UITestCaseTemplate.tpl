@@ -15,12 +15,17 @@ class <%test_name%> extends UITestCase
 	public function test_() : void
 	{
 		/**
-		 * Read ./lib/UITestCase.php file regarding assertions.
+		 * To know more about assertions go to ./lib/Traits.
 	 	 * 
 	 	 * Examples:
 	 	 * 
 	 	 * $this->assertLength( 'abc', 3 ); // true
-	 	 * $this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1)); // true
+	 	 * $this->assertArrayHasKey('key3', ['key3'=>null, 'key4'=>1]); // true
+		 *
+		 * Chainable feature:
+		 *
+	 	 * $this->assertLength( 'abc', 3 ); // true
+	 	 * 		->assertArrayHasKey('key3', ['key3'=>null, 'key4'=>1]); // true
 		 */
 	}
 	
