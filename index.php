@@ -17,7 +17,7 @@ require_once $dirname . '/examples/classes/classes.php';
 $tester = new UITester(['verbose' => true]);
 
 // Run all tests
-// $tester->all();
+$tester->all();
 
 // Only specific tests (string)
 // $tester->only('CarTest_518135355')
