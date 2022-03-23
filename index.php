@@ -20,7 +20,8 @@ $tester = new UITester(['verbose' => true]);
 // $tester->all();
 
 // Only specific tests (string)
-// $tester->only('CarTest_518135355');
+// $tester->only('CarTest_518135355')
+//         ->outputTestResults();
 
 // Only specific tests (array)
 // $tester->only([

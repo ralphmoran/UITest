@@ -82,9 +82,6 @@ final class UITester {
 			);
 		}
 
-		if( $this->verbose )
-			$this->outputTestResults();
-
 		return $this;
 	}
 
