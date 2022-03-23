@@ -58,7 +58,8 @@ $tester->all("/another/test/folder/");
  * It runs only `CarTest_518135355` from the default test folder `/tests/` 
  * and display in detail all assertions statuses.
  */
-$tester->only('CarTest_518135355'); 
+$tester->only('CarTest_518135355')
+		->outputTestResults(); 
 
 // ...
 
@@ -70,7 +71,8 @@ $tester->only('CarTest_518135355');
 $tester->only([
 		'CarTest_518135355',
 		'GetRandomStrTest_1218383454'
-	]); 
+	])
+	->outputTestResults(); 
 
 // ...
 
@@ -79,7 +81,8 @@ $tester->only([
  * `/another/real/weird/path/` and display in detail all assertions statuses.
  */
 $tester->setPath('/another/real/weird/path/')
-	->only('CarTest_518135355'); 
+	->only('CarTest_518135355')
+	->outputTestResults(); 
 ```
 
 ## Usage: How to create a UITestCase
@@ -265,7 +268,8 @@ $tester->all();
 //...
 
 // Only specific tests (string)
-$tester->only('CarTest_518135355');
+$tester->only('CarTest_518135355')
+		->outputTestResults();
 ```
 ![Detailed results and final report](Details%20and%20final%20report.png)
 
@@ -277,7 +281,8 @@ $tester->only('CarTest_518135355');
 $tester->only([
 		'CarTest_518135355',
 		'GetRandomStrTest_1218383454'
-	]);
+	])
+	->outputTestResults();
 
 ```
 ![Final report](Final%20report.png)
