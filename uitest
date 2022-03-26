@@ -15,7 +15,7 @@ $lopts  = [
 	"make:",	// TODO: Add support for different types of creations.
 	"name:",
 	"element:",
-	"path::",	// TODO: Add support to place the new test case in a custom path.
+	"path::",
 ];
 
 // Get options from CLI
