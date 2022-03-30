@@ -53,28 +53,36 @@ if( ! function_exists("file_loader") )
 	 */
 	function file_loader( $file ) : void
 	{
+		
+
 		// Path + filename + extension
 		$file_tmp = $file;
 
 		if( is_file( $file_tmp ) === false ) {
 
+			$file = basename(str_replace('\\', '/', $file));
+
 			// Class name
 			$file_tmp = dirname(__FILE__) . '/classes/' . $file . '.php';
-
+			
 			if( is_file( $file_tmp ) === false ) {
 
 				// Trait name
 				$file_tmp = dirname(__FILE__) . '/traits/' . $file . '.php';
 
 				if( is_file( $file_tmp ) === false ){
-					try {
-						throw new Exception('File: ' . $file . ' does not exist.');
-					} catch (Exception $e){
-						echo UIFormatter::setColor(" ERROR ", "bgred", true) . " " . $e->getMessage() . "\n";
+
+					// Test case name
+					$file_tmp = rtrim(dirname(__FILE__), 'lib/') . '/tests/' . $file . '.php';
+
+					if( is_file( $file_tmp ) === false ){
+						try {
+							throw new Exception('File: ' . $file . ' does not exist.');
+						} catch (Exception $e){
+							echo App\UITesting\Lib\Classes\UIFormatter::setColor(" ERROR ", "bgred", true) . " " . $e->getMessage() . "\n";
+						}
 					}
 				}
-					
-
 			}
 		}
 

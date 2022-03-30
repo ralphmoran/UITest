@@ -1,5 +1,7 @@
 <?php
+namespace App\UITesting\Lib\Classes;
 
+use App\UITesting\Lib\Classes\UIFormatter;
 final class UITester {
 
 	/** @var array List of loaded tests. */

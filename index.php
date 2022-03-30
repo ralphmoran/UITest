@@ -14,7 +14,7 @@ require_once $dirname . '/examples/functions.php';
 require_once $dirname . '/examples/classes/classes.php';
 
 // Use case
-$tester = new UITester(['verbose' => true]);
+$tester = new \App\UITesting\Lib\Classes\UITester(['verbose' => true]);
 
 // Run all tests
 $tester->all();
