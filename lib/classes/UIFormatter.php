@@ -1,5 +1,5 @@
 <?php
-
+namespace App\UITesting\Lib\Classes;
 class UIFormatter
 {
 	public static $check_mark = "\xE2\x9C\x94";

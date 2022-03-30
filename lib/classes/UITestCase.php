@@ -1,15 +1,15 @@
 <?php
-
+namespace App\UITesting\Lib\Classes;
 abstract class UITestCase
 {
-	use StringAssertions,
-		ArrayAssertions,
-		BooleanAssertions,
-		ClassAssertions,
-		FileAssertions,
-		MiscAssertions,
-		NumericAssertions,
-		ObjectAssertions;
+	use \App\UITesting\Lib\Traits\StringAssertions,
+		\App\UITesting\Lib\Traits\ArrayAssertions,
+		\App\UITesting\Lib\Traits\BooleanAssertions,
+		\App\UITesting\Lib\Traits\ClassAssertions,
+		\App\UITesting\Lib\Traits\FileAssertions,
+		\App\UITesting\Lib\Traits\MiscAssertions,
+		\App\UITesting\Lib\Traits\NumericAssertions,
+		\App\UITesting\Lib\Traits\ObjectAssertions;
 
 	/** @var string Name of the class or function to be used. */
 	protected $element = '';
@@ -40,7 +40,7 @@ abstract class UITestCase
 		// No class or function found
 		if( ! function_exists($this->element) && ! class_exists($this->element) ){
 			$this->logAssertionStatus($this->element, 
-										array("error" => "$this->element does not exist."), 
+										["error" => "$this->element does not exist."], 
 										false
 									);
 			return $this;
@@ -61,7 +61,7 @@ abstract class UITestCase
 
 				$this->test_counter++;
 
-				call_user_func( array($this, $method) );
+				call_user_func( [$this, $method] );
 			}
 
 		}

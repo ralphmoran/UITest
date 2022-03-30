@@ -1,5 +1,9 @@
 <?php
 
+// namespace App\UITests;
+
+use App\UITesting\Lib\Classes\UITestCase;
+
 class <%test_name%> extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
