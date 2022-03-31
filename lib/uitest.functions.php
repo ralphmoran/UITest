@@ -49,44 +49,20 @@ if( ! function_exists("file_loader") )
 	 * Version: PHP 5 >= 5.1.0, PHP 7, PHP 8
 	 *
 	 * @param string $file
+	 * @throws Exception When $file does not exist.
 	 * @return void
 	 */
 	function file_loader( $file ) : void
 	{
-		
+		try {
+			if( ! isFile( $file ) )
+				throw new Exception('File: ' . $file . ' does not exist.');
 
-		// Path + filename + extension
-		$file_tmp = $file;
+			uiloader($file);
 
-		if( is_file( $file_tmp ) === false ) {
-
-			$file = basename(str_replace('\\', '/', $file));
-
-			// Class name
-			$file_tmp = dirname(__FILE__) . '/classes/' . $file . '.php';
-			
-			if( is_file( $file_tmp ) === false ) {
-
-				// Trait name
-				$file_tmp = dirname(__FILE__) . '/traits/' . $file . '.php';
-
-				if( is_file( $file_tmp ) === false ){
-
-					// Test case name
-					$file_tmp = rtrim(dirname(__FILE__), 'lib/') . '/tests/' . $file . '.php';
-
-					if( is_file( $file_tmp ) === false ){
-						try {
-							throw new Exception('File: ' . $file . ' does not exist.');
-						} catch (Exception $e){
-							echo App\UITesting\Lib\Classes\UIFormatter::setColor(" ERROR ", "bgred", true) . " " . $e->getMessage() . "\n";
-						}
-					}
-				}
-			}
+		} catch (Exception $e){
+			echo App\UITesting\Lib\Classes\UIFormatter::setColor(" ERROR ", "bgred", true) . " " . $e->getMessage() . "\n";
 		}
-
-		uiloader($file_tmp);
 	}
 
 	// Registers the autoloader function.
@@ -94,13 +70,45 @@ if( ! function_exists("file_loader") )
 
 }
 
+if( ! function_exists("isFile") )
+{
+	/**
+	 * Validates if $file exists.
+	 *
+	 * @param string &$file
+	 * @return mixed
+	 */
+	function isFile( &$file )
+	{
+		$elements = ['classes', 'traits', 'tests'];
+
+		if( is_file($file) )
+			return $file;
+
+		$basedirname = dirname(__FILE__);
+		$file        = basename(str_replace('\\', '/', $file));
+
+		foreach($elements as $element){
+
+			$file_tmp = $basedirname . '/'. $element .'/' . $file . '.php';
+
+			if( $element == 'tests' )
+				$file_tmp = str_replace('lib/', '', $file_tmp);
+
+			if( is_file($file_tmp) )
+				return $file = $file_tmp;
+		}
+
+		return false;
+	}
+}
+
 if( ! function_exists("uiloader") )
 {
 	/**
-	 * Loads a file if exists.
+	 * Loads a file.
 	 *
 	 * @param string $file
-	 * @throws Exception When $file does not exist.
 	 * @return void
 	 */
 	function uiloader( $file ) : void
