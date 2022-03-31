@@ -1,7 +1,8 @@
 <?php
-// namespace App\UITests;
+namespace App\UITesting\Tests;
 
 use App\UITesting\Lib\Classes\UITestCase;
+
 class GetRandomStrTest_1218383454 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */

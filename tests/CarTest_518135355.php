@@ -1,7 +1,8 @@
 <?php
-// namespace App\UITests;
+namespace App\UITesting\Tests;
 
 use App\UITesting\Lib\Classes\UITestCase;
+
 class CarTest_518135355 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
@@ -14,7 +15,7 @@ class CarTest_518135355 extends UITestCase
 	 */
 	public function test_cartype_is_string_and_not_empty() : void
 	{
-		$car_type = (new Car)->getType();
+		$car_type = (new \Car)->getType();
 
 		$this->assertNotEmpty($car_type)
 			->assertIsString($car_type);

@@ -44,9 +44,7 @@ if( ! function_exists('load_env') )
 if( ! function_exists("file_loader") )
 {
 	/**
-	 * Class, trait, and file autoloader.
-	 * 
-	 * Version: PHP 5 >= 5.1.0, PHP 7, PHP 8
+	 * Class, trait, tests, and file autoloader.
 	 *
 	 * @param string $file
 	 * @throws Exception When $file does not exist.
@@ -65,9 +63,7 @@ if( ! function_exists("file_loader") )
 		}
 	}
 
-	// Registers the autoloader function.
 	spl_autoload_register('file_loader');
-
 }
 
 if( ! function_exists("isFile") )

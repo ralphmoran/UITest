@@ -1,6 +1,6 @@
 <?php
 
-// namespace App\UITests;
+namespace App\UITesting\Tests;
 
 use App\UITesting\Lib\Classes\UITestCase;
 

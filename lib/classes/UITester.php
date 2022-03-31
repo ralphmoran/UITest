@@ -7,6 +7,9 @@ final class UITester {
 	/** @var array List of loaded tests. */
 	private $loaded_tests = [];
 
+	/** @var array Namespace for tests. */
+	private $namespace = 'App\\UITesting\\Tests\\';
+
 	/** @var string Where all the test classes live in. */
 	private $path = '';
 
@@ -104,21 +107,6 @@ final class UITester {
 	}
 
 	/**
-	 * Gets the test result from run method.
-	 *
-	 * @return array
-	 */
-	public function getTestResults() : array
-	{
-		return [
-			'test_cases'       => $this->total_test_cases,
-			'tests'            => $this->total_tests,
-			'assertions'       => $this->total_assertions,
-			'assertion_failed' => $this->total_assertions_failed
-		];
-	}
-
-	/**
 	 * Outputs test results.
 	 * 
 	 * By default, verbose is false and will not output assertion status 
@@ -157,7 +145,7 @@ final class UITester {
 		UIFormatter::setColor("]\n", "", $this->verbose);
 
 		// Signature
-		UIFormatter::setColor("\nUITest v0.0", "bgdray", $this->verbose);
+		UIFormatter::setColor("\nUITesting v0.0", "bgdray", $this->verbose);
 		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray", $this->verbose);
 		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray", $this->verbose);
 	}
@@ -176,18 +164,18 @@ final class UITester {
 	 */
 	private function load_test( $test )
 	{
-		$test_name = $this->getTestName( $test );
+		$test_class = $this->getTestName( $test );
 
-		if( ! in_array( $test_name, $this->loaded_tests ) ){
+		if( ! in_array( $test_class, $this->loaded_tests ) ){
 
-			$test = $this->path . "/" . $test_name . ".".  $this->extension;
+			file_loader( $this->path . "/" . $test_class . "." .  $this->extension );
 
-			file_loader( $test );
+			$test_class = $this->namespace . $test_class;
 			
-			$this->loaded_tests[] = $test_name;
+			$this->loaded_tests[] = $test_class;
 		}
 
-		return new $test_name;
+		return new $test_class;
 	}
 
 	/**
