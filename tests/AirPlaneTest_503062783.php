@@ -1,7 +1,8 @@
 <?php
-// namespace App\UITests;
+namespace App\UITesting\Tests;
 
 use App\UITesting\Lib\Classes\UITestCase;
+
 class AirPlaneTest_503062783 extends UITestCase
 {
 	/** @var string Name of the class or function to be used on this test. */
@@ -14,7 +15,7 @@ class AirPlaneTest_503062783 extends UITestCase
 	 */
 	public function test_if_gettype_returns_string_and_no_empty() : void
 	{
-		$airplane_type = (new AirPlane)->getType();
+		$airplane_type = (new \AirPlane)->getType();
 
 		$this->assertIsString($airplane_type)
 			->assertNotEmpty($airplane_type);
