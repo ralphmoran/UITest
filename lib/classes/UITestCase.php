@@ -119,13 +119,10 @@ abstract class UITestCase
 	}
 	
 	/*
-	assertClassHasAttribute()
-	assertClassHasStaticAttribute()
 	assertContainsOnly()
 	assertContainsOnlyInstancesOf()
 	assertEqualsCanonicalizing()
 	assertEqualsIgnoringCase()
-	assertObjectEquals()
 	assertInstanceOf()
 	assertObjectHasAttribute()
 	assertMatchesRegularExpression()

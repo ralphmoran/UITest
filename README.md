@@ -87,7 +87,7 @@ $tester->setPath('/another/real/weird/path/')
 
 ## Usage: How to create a UITestCase
 
-All your test cases must extend from the abstract class `UITestCase`, define the `$element` (class or function to be tested), and all the tests/methods must start with `test_` and return void. 
+All your test cases must extend from the abstract class `UITestCase` and all tests/methods must start with `test_` and return void. 
 
 There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uitest`. You can save your tests in any other folder. In order to execute them you need to specify the new path like it was displayed above.
 
@@ -98,9 +98,6 @@ require_once $dirname . '/lib/UITestCase.php';
 // New test case needs to extend from abstract class UITestCase.
 class CarTestCase extends UITestCase
 {
-	/** @var string Name of the class or function to be used on this test. */
-	protected $element = 'Car';
-
 	/**
 	 * Tests if (new Car)->getType() returns a non-empty string.
 	 *
@@ -141,7 +138,6 @@ $ cd uitesting // Or make an alias that point to `php uitest` globally
 ```
 
 
-
 This command will create a new test case, named `ClassNameX`:
 
 ```
@@ -151,11 +147,8 @@ $ php uitest -n=ClassNameX
 ```php
 class ClassNameXTestCase_518135355 extends UITestCase
 {
-	/** @var string Name of the class or function to be used on this test. */
-	protected $element = 'ClassNameX';
-
 	/**
-	 * Tests if 'ClassNameX'...
+	 * Tests if 'ClassNameXTestCase_518135355'...
 	 *
 	 * All tests MUST START WITH "test_".
 	 *
@@ -177,51 +170,16 @@ class ClassNameXTestCase_518135355 extends UITestCase
 ```
 
 ```
+$ php uitest -n=FunctionNameX
+OR 
 $ php uitest --name=FunctionNameX
 ```
 
 ```php
 class FunctionNameXTestCase_518135355 extends UITestCase
 {
-	/** @var string Name of the class or function to be used on this test. */
-	protected $element = 'FunctionNameX';
-
 	/**
-	 * Tests if 'FunctionNameX'...
-	 *
-	 * All tests MUST START WITH "test_".
-	 *
-	 * @return void
-	 */
-	public function test_() : void
-	{
-		/**
-		 * Read ./lib/UITestCase.php file regarding assertions.
-	 	 * 
-	 	 * Examples:
-	 	 * 
-	 	 * $this->assertLength( 'abc', 3 ); # true
-	 	 * $this->assertArrayHasKey('key3', array('key3'=>null, 'key4'=>1)); # true
-		 */
-	}
-	
-}
-```
-
-```
-$ php uitest -n=FunctionNameX -e=NameQ
-OR 
-$ php uitest --name=FunctionNameX --element=NameQ
-```
-
-```php
-class FunctionNameXTestCase_518135355 extends UITestCase
-{
-	/** @var string Name of the class or function to be used on this test. */
-	protected $element = 'NameQ';
-
-	/**
-	 * Tests if 'NameQ'...
+	 * Tests if 'FunctionNameXTestCase_518135355'...
 	 *
 	 * All tests MUST START WITH "test_".
 	 *
