@@ -9,12 +9,11 @@ if ( ! defined('STDIN') )
 // Load environment variables
 load_env();
 
-$sopts  = "m:n:e:p::"; // make:name:element:path::
+$sopts  = "m:n:p::"; // make:name:element:path::
 
 $lopts  = [
 	"make:",	// TODO: Add support for different types of creations.
 	"name:",
-	"element:",
 	"path::",
 ];
 
@@ -25,7 +24,6 @@ $options = getopt($sopts, $lopts);
 extract($options);
 
 $name       = ( isset($name   ) ) ? $name    : ( isset($n) ? $n : ""                ) ;
-$element    = ( isset($element) ) ? $element : ( isset($e) ? $e : $name             ) ;
 $path_tests = ( isset($path   ) ) ? $path    : ( isset($p) ? $p : env('PATH_TESTS') ) ;
 $test_name  = $name . "TestCase_" . time() . mt_rand(0, 100);
 
@@ -39,14 +37,9 @@ if( ! is_dir($path_tests) )
 
 
 // Replace tags in template
-$new_test_case 	= str_replace(array(
-							"<%test_name%>", 
-							"<%element_name%>", 
-						),
-						[
-							$test_name,
-							$name, 
-						],
+$new_test_case 	= str_replace(
+						"<%test_name%>",
+						$test_name,
 						file_get_contents(env('TEST_CASE_TEMPLATE'))
 					);
 

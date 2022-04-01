@@ -6,11 +6,8 @@ use App\UITesting\Lib\Classes\UITestCase;
 
 class <%test_name%> extends UITestCase
 {
-	/** @var string Name of the class or function to be used on this test. */
-	protected $element = '<%element_name%>';
-
 	/**
-	 * Tests if '<%element_name%>'...
+	 * Tests if '<%test_name%>'...
 	 *
 	 * All tests MUST START WITH "test_".
 	 *
@@ -19,7 +16,7 @@ class <%test_name%> extends UITestCase
 	public function test_() : void
 	{
 		/**
-		 * To know more about assertions go to ./lib/Traits.
+		 * To know how to use assertions go to UITesting/lib/traits.
 	 	 * 
 	 	 * Examples:
 	 	 * 
@@ -32,5 +29,4 @@ class <%test_name%> extends UITestCase
 	 	 * 		->assertArrayHasKey('key3', ['key3'=>null, 'key4'=>1]); // true
 		 */
 	}
-	
 }
