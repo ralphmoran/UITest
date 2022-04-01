@@ -11,9 +11,6 @@ abstract class UITestCase
 		\App\UITesting\Lib\Traits\NumericAssertions,
 		\App\UITesting\Lib\Traits\ObjectAssertions;
 
-	/** @var string Name of the class or function to be used. */
-	protected $element = '';
-
 	/** @var array Assertion statuses. */
 	private $assertion_status = [];
 
@@ -37,15 +34,6 @@ abstract class UITestCase
 	 */
 	public function run( array $opts = [] ) : UITestCase
 	{
-		// No class or function found
-		if( ! function_exists($this->element) && ! class_exists($this->element) ){
-			$this->logAssertionStatus($this->element, 
-										["error" => "$this->element does not exist."], 
-										false
-									);
-			return $this;
-		}
-
 		$this->verbose = isset($opts['verbose']) ?  $opts['verbose'] : false;
 
 		// Proceed to execute test case

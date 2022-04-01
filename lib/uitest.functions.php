@@ -54,7 +54,7 @@ if( ! function_exists("file_loader") )
 	{
 		try {
 			if( ! isFile( $file ) )
-				throw new Exception('File: ' . $file . ' does not exist.');
+				throw new Exception('File or Class: "' . $file . '" does not exist.');
 
 			uiloader($file);
 
