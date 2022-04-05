@@ -15,7 +15,10 @@ trait ObjectAssertions
 	 */
 	protected function assertObjectEquals() : UITestCase
 	{
-
+		return $this->logAssertionStatus(__FUNCTION__, 
+											get_defined_vars(), 
+											is_dir($dir)
+										);
 	}
 	
 	/**
@@ -29,7 +32,10 @@ trait ObjectAssertions
 	 */
 	protected function assertObjectHasAttribute() : UITestCase
 	{
-
+		return $this->logAssertionStatus(__FUNCTION__, 
+											get_defined_vars(), 
+											is_dir($dir)
+										);
 	}
 
 	/**
@@ -43,7 +49,10 @@ trait ObjectAssertions
 	 */
 	protected function assertObjectHasStaticAttribute() : UITestCase
 	{
-
+		return $this->logAssertionStatus(__FUNCTION__, 
+											get_defined_vars(), 
+											is_dir($dir)
+										);
 	}
 
 	/**
@@ -57,7 +66,10 @@ trait ObjectAssertions
 	 */
 	protected function assertObjectHasMethod() : UITestCase
 	{
-
+		return $this->logAssertionStatus(__FUNCTION__, 
+											get_defined_vars(), 
+											is_dir($dir)
+										);
 	}
 
 	/**
@@ -71,6 +83,9 @@ trait ObjectAssertions
 	 */
 	protected function assertObjectHasStaticMethod() : UITestCase
 	{
-
+		return $this->logAssertionStatus(__FUNCTION__, 
+											get_defined_vars(), 
+											is_dir($dir)
+										);
 	}
 }
