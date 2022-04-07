@@ -47,7 +47,7 @@ class UIFaker
 				$format['max'] = NULL;
 
 			// Non-Associative array
-			if( ! $this->isAssociative($format ) ){
+			if( ! $this->isAssociative($format) ){
 				$fake_array[] = $this->getValueFromType( $format );
 				continue;
 			}
