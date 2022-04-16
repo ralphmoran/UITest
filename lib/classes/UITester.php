@@ -28,7 +28,7 @@ final class UITester {
 	/** @var integer Total assertions failed. */
 	private $total_assertions_failed = 0;
 
-	/** @var boolean Verbose. */
+	/** @var boolean Verbose|v. */
 	private $verbose = false;
 
 	/**
@@ -42,7 +42,11 @@ final class UITester {
 							? $opts['path']
 							: env('PATH_TESTS');
 
-		$this->verbose = isset($opts['verbose']) ? $opts['verbose'] : false;
+		$this->verbose = isset($opts['verbose']) 
+							? $opts['verbose'] 
+							: ( isset($opts['v']) 
+								? isset($opts['v']) 
+								: false );
 	}
 
 	/**
