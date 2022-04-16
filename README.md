@@ -31,6 +31,8 @@ $tester = new UITester(); // It runs all test from env('PATH_TESTS'), results ar
 $tester = new UITester([
 						"path" => "/another/real/weird/path/",
 						"verbose" => true,
+						// Or...
+						"v" => true,
 					]); 
 ```
 
@@ -217,6 +219,12 @@ require_once $dirname . '/examples/classes/classes.php';
 
 // Use case
 $tester = new UITester(['verbose' => true]); // It displays all assertions in detail
+```
+
+Or...
+
+```php
+$tester = new UITester(['v' => true]); // It displays all assertions in detail
 
 // ...
 
