@@ -45,7 +45,7 @@ final class UITester {
 		$this->verbose = isset($opts['verbose']) 
 							? $opts['verbose'] 
 							: ( isset($opts['v']) 
-								? isset($opts['v']) 
+								? $opts['v'] 
 								: false );
 	}
 
