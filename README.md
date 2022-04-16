@@ -219,11 +219,9 @@ require_once $dirname . '/examples/classes/classes.php';
 
 // Use case
 $tester = new UITester(['verbose' => true]); // It displays all assertions in detail
-```
 
-Or...
+// Or...
 
-```php
 $tester = new UITester(['v' => true]); // It displays all assertions in detail
 
 // ...
