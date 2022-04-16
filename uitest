@@ -9,23 +9,21 @@ if ( ! defined('STDIN') )
 // Load environment variables
 load_env();
 
-$sopts  = "m:n:p::"; // make:name:path::
+// Extract options: make|m, name|n, path|p from CLI
+extract( getopt("m:n::p::", [
+								"make:",	// TODO: Add support for different types of creations.
+								"name::",
+								"path::",
+							]
+						)
+					);
 
-$lopts  = [
-	"make:",	// TODO: Add support for different types of creations.
-	"name:",
-	"path::",
-];
+$name       = ( isset($name) ) ? $name : ( isset($n) ? $n :     ""            ) ;
+$path_tests = ( isset($path) ) ? $path : ( isset($p) ? $p : env('PATH_TESTS') ) ;
+$test_name  = trim( $name ) . env('TEST_CASE_PREFIX') . time() . mt_rand(0, 100);
 
-// Get options from CLI
-$options = getopt($sopts, $lopts);
-
-// Extract options: make|m, name|n, path|p
-extract($options);
-
-$name       = ( isset($name ) ) ? $name : ( isset($n) ? $n :     ""            ) ;
-$path_tests = ( isset($path ) ) ? $path : ( isset($p) ? $p : env('PATH_TESTS') ) ;
-$test_name  = $name . env('TEST_CASE_PREFIX') . time() . mt_rand(0, 100);
+// Clean test name
+$test_name = preg_replace('/[^A-Za-z0-9\_]/', '', $test_name);
 
 // Validate path
 if( ! is_dir($path_tests) )
