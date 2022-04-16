@@ -7,9 +7,6 @@ final class UITester {
 	/** @var array List of loaded tests. */
 	private $loaded_tests = [];
 
-	/** @var array Namespace for tests. */
-	private $namespace = 'App\\UITesting\\Tests\\';
-
 	/** @var string Where all the test classes live in. */
 	private $path = '';
 
@@ -174,7 +171,7 @@ final class UITester {
 
 			file_loader( $this->path . "/" . $test_class . "." .  $this->extension );
 
-			$test_class = $this->namespace . $test_class;
+			$test_class = env('TEST_NAMESPACE') . '\\' . $test_class;
 			
 			$this->loaded_tests[] = $test_class;
 		}
