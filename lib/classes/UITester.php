@@ -117,38 +117,38 @@ final class UITester {
 	 */
 	public function outputTestResults() : void
 	{
-		UIFormatter::setColor("\n\nUITest status:", "bgreen",true);
+		UIFormatter::setColor("\n\nUITest status:", "bgreen", true);
 
 		if ( $this->total_assertions_failed )
-			UIFormatter::setColor(" Failed! ", "bgired",true);
+			UIFormatter::setColor(" Failed! ", "bgired", true);
 
 		if ( $this->total_assertions_failed == 0 )
-			UIFormatter::setColor(" Passed! ", "bigreen",true);
+			UIFormatter::setColor(" Passed! ", "bigreen", true);
 
-		UIFormatter::setColor("\n\n", "",true);
-		UIFormatter::setColor("Total test cases:", "yellow",true);
-		UIFormatter::setColor(" " . $this->total_test_cases, "white",true);
+		UIFormatter::setColor("\n\n", "", true);
+		UIFormatter::setColor("Total test cases:", "yellow", true);
+		UIFormatter::setColor(" " . $this->total_test_cases, "white", true);
 
-		UIFormatter::setColor(" Total tests:", "yellow",true);
-		UIFormatter::setColor(" " . $this->total_tests, "white",true);
+		UIFormatter::setColor(" Total tests:", "yellow", true);
+		UIFormatter::setColor(" " . $this->total_tests, "white", true);
 
-		UIFormatter::setColor(" Total assertions:", "yellow",true);
-		UIFormatter::setColor(" " . $this->total_assertions, "white",true);
+		UIFormatter::setColor(" Total assertions:", "yellow", true);
+		UIFormatter::setColor(" " . $this->total_assertions, "white", true);
 
-		UIFormatter::setColor(" [", "",true);
-		UIFormatter::setColor(UIFormatter::$check_mark, "green",true);
-		UIFormatter::setColor(( $this->total_assertions - $this->total_assertions_failed ), "",true);
-		UIFormatter::setColor("]", "",true);
+		UIFormatter::setColor(" [", "", true);
+		UIFormatter::setColor(UIFormatter::$check_mark, "green", true);
+		UIFormatter::setColor(( $this->total_assertions - $this->total_assertions_failed ), "", true);
+		UIFormatter::setColor("]", "", true);
 
-		UIFormatter::setColor("[", "",true);
-		UIFormatter::setColor("x", "red",true);
-		UIFormatter::setColor("{$this->total_assertions_failed}", "",true);
-		UIFormatter::setColor("]\n", "",true);
+		UIFormatter::setColor("[", "", true);
+		UIFormatter::setColor("x", "red", true);
+		UIFormatter::setColor("{$this->total_assertions_failed}", "", true);
+		UIFormatter::setColor("]\n", "", true);
 
 		// Signature
-		UIFormatter::setColor("\nUITesting v0.0", "bgdray",true);
-		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray",true);
-		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray",true);
+		UIFormatter::setColor("\nUITesting v0.0", "bgdray", true);
+		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray", true);
+		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray", true);
 	}
 
 	/**
