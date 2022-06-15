@@ -60,7 +60,7 @@ final class UITester {
 		foreach(glob($this->path . '/*' . $this->extension) as $test)
 			$this->only($test);
 
-		if( $this->verbose )
+		// if( $this->verbose )
 			$this->outputTestResults();
 
 		return $this;
@@ -117,38 +117,38 @@ final class UITester {
 	 */
 	public function outputTestResults() : void
 	{
-		UIFormatter::setColor("\n\nUITest status:", "bgreen", $this->verbose);
+		UIFormatter::setColor("\n\nUITest status:", "bgreen",true);
 
 		if ( $this->total_assertions_failed )
-			UIFormatter::setColor(" Failed! ", "bgired", $this->verbose);
+			UIFormatter::setColor(" Failed! ", "bgired",true);
 
 		if ( $this->total_assertions_failed == 0 )
-			UIFormatter::setColor(" Passed! ", "bigreen", $this->verbose);
+			UIFormatter::setColor(" Passed! ", "bigreen",true);
 
-		UIFormatter::setColor("\n\n", "", $this->verbose);
-		UIFormatter::setColor("Total test cases:", "yellow", $this->verbose);
-		UIFormatter::setColor(" " . $this->total_test_cases, "white", $this->verbose);
+		UIFormatter::setColor("\n\n", "",true);
+		UIFormatter::setColor("Total test cases:", "yellow",true);
+		UIFormatter::setColor(" " . $this->total_test_cases, "white",true);
 
-		UIFormatter::setColor(" Total tests:", "yellow", $this->verbose);
-		UIFormatter::setColor(" " . $this->total_tests, "white", $this->verbose);
+		UIFormatter::setColor(" Total tests:", "yellow",true);
+		UIFormatter::setColor(" " . $this->total_tests, "white",true);
 
-		UIFormatter::setColor(" Total assertions:", "yellow", $this->verbose);
-		UIFormatter::setColor(" " . $this->total_assertions, "white", $this->verbose);
+		UIFormatter::setColor(" Total assertions:", "yellow",true);
+		UIFormatter::setColor(" " . $this->total_assertions, "white",true);
 
-		UIFormatter::setColor(" [", "", $this->verbose);
-		UIFormatter::setColor(UIFormatter::$check_mark, "green", $this->verbose);
-		UIFormatter::setColor(( $this->total_assertions - $this->total_assertions_failed ), "", $this->verbose);
-		UIFormatter::setColor("]", "", $this->verbose);
+		UIFormatter::setColor(" [", "",true);
+		UIFormatter::setColor(UIFormatter::$check_mark, "green",true);
+		UIFormatter::setColor(( $this->total_assertions - $this->total_assertions_failed ), "",true);
+		UIFormatter::setColor("]", "",true);
 
-		UIFormatter::setColor("[", "", $this->verbose);
-		UIFormatter::setColor("x", "red", $this->verbose);
-		UIFormatter::setColor("{$this->total_assertions_failed}", "", $this->verbose);
-		UIFormatter::setColor("]\n", "", $this->verbose);
+		UIFormatter::setColor("[", "",true);
+		UIFormatter::setColor("x", "red",true);
+		UIFormatter::setColor("{$this->total_assertions_failed}", "",true);
+		UIFormatter::setColor("]\n", "",true);
 
 		// Signature
-		UIFormatter::setColor("\nUITesting v0.0", "bgdray", $this->verbose);
-		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray", $this->verbose);
-		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray", $this->verbose);
+		UIFormatter::setColor("\nUITesting v0.0", "bgdray",true);
+		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray",true);
+		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray",true);
 	}
 
 	/**

@@ -84,6 +84,10 @@ abstract class UITestCase
 		UIFormatter::setColor($icon, $color, $this->verbose);
 		UIFormatter::setColor(" " . $name . ": " . rtrim($variables, ', ') . "\n", "white", $this->verbose);
 
+		if( ! $status ){
+			UIFormatter::setColor("\t[!] " . sprintf('Go to: %s:%s', debug_backtrace()[1]['file'], debug_backtrace()[1]['line']) . "\n", "red", $this->verbose );
+		}
+
 		$this->assertion_counter++;
 
 		// Tracking back the parent method that called the assertion
