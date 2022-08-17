@@ -1,0 +1,19 @@
+{
+    "name": "rafael.moran/uitest",
+    "description": "Unit and Integration testing package",
+    "type": "library",
+    "require": {
+        "php": ">=7.2"
+      },
+    "autoload": {
+        "psr-4": {
+            "RalphMoran\\Uitest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ralph.moran",
+            "email": "ralphmoran2003@gmail.com"
+        }
+    ]
+}
