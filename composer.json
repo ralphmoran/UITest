@@ -1,6 +1,8 @@
 {
     "name": "rafael.moran/uitest",
     "description": "Unit and Integration testing package",
+    "keywords": ["unit","testing","unittesting","integration"],
+    "homepage": "https://github.com/ralphmoran/UITest",
     "type": "library",
     "license": "MIT",
     "require": {
