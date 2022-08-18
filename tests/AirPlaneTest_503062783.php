@@ -1,7 +1,7 @@
 <?php
-namespace App\UITesting\Tests;
+namespace RafaelMoran\UITesting\Tests;
 
-use App\UITesting\Lib\Classes\UITestCase;
+use RafaelMoran\UITest\UITestCase;
 
 class AirPlaneTest_503062783 extends UITestCase
 {

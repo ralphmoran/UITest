@@ -3,12 +3,16 @@
     "description": "Unit and Integration testing package",
     "type": "library",
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "vlucas/phpdotenv": "^5.4"
+      },
+    "require-dev": {
       },
     "autoload": {
         "psr-4": {
-            "RalphMoran\\Uitest\\": "src/"
-        }
+            "RafaelMoran\\UITest\\": ["src/classes", "src/traits"]
+        },
+        "files": ["src/helpers.php"]
     },
     "authors": [
         {

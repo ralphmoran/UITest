@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UITesting\Lib\Classes;
+namespace RafaelMoran\UITest;
 
 class UIFaker
 {

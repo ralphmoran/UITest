@@ -1,15 +1,16 @@
 <?php
-namespace App\UITesting\Lib\Classes;
+namespace RafaelMoran\UITest;
+
 abstract class UITestCase
 {
-	use \App\UITesting\Lib\Traits\StringAssertions,
-		\App\UITesting\Lib\Traits\ArrayAssertions,
-		\App\UITesting\Lib\Traits\BooleanAssertions,
-		\App\UITesting\Lib\Traits\ClassAssertions,
-		\App\UITesting\Lib\Traits\FileAssertions,
-		\App\UITesting\Lib\Traits\MiscAssertions,
-		\App\UITesting\Lib\Traits\NumericAssertions,
-		\App\UITesting\Lib\Traits\ObjectAssertions;
+	use \RafaelMoran\UITest\Traits\StringAssertions,
+		\RafaelMoran\UITest\Traits\ArrayAssertions,
+		\RafaelMoran\UITest\Traits\BooleanAssertions,
+		\RafaelMoran\UITest\Traits\ClassAssertions,
+		\RafaelMoran\UITest\Traits\FileAssertions,
+		\RafaelMoran\UITest\Traits\MiscAssertions,
+		\RafaelMoran\UITest\Traits\NumericAssertions,
+		\RafaelMoran\UITest\Traits\ObjectAssertions;
 
 	/** @var array Assertion statuses. */
 	private $assertion_status = [];
