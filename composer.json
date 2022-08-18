@@ -2,6 +2,7 @@
     "name": "rafael.moran/uitest",
     "description": "Unit and Integration testing package",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": ">=7.2",
         "vlucas/phpdotenv": "^5.4"
