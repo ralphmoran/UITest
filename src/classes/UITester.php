@@ -1,7 +1,7 @@
 <?php
-namespace App\UITesting\Lib\Classes;
+namespace RafaelMoran\UITest;
 
-use App\UITesting\Lib\Classes\UIFormatter;
+use RafaelMoran\UITest\UIFormatter;
 final class UITester {
 
 	/** @var array List of loaded tests. */
@@ -37,7 +37,7 @@ final class UITester {
 	{
 		$this->path = ( isset($opts['path']) && !empty($opts['path']) ) 
 							? $opts['path']
-							: env('PATH_TESTS');
+							: $_ENV['PATH_TESTS'];
 
 		$this->verbose = isset($opts['verbose']) 
 							? $opts['verbose'] 
@@ -169,9 +169,9 @@ final class UITester {
 
 		if( ! in_array( $test_class, $this->loaded_tests ) ){
 
-			file_loader( $this->path . "/" . $test_class . "." .  $this->extension );
+			test_loader( $this->path . "/" . $test_class . "." .  $this->extension );
 
-			$test_class = env('TEST_NAMESPACE') . '\\' . $test_class;
+			$test_class = $_ENV['TEST_NAMESPACE'] . '\\' . $test_class;
 			
 			$this->loaded_tests[] = $test_class;
 		}

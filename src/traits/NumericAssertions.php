@@ -1,7 +1,8 @@
 <?php
-namespace App\UITesting\Lib\Traits;
+namespace RafaelMoran\UITest\Traits;
 
-use App\UITesting\Lib\Classes\UITestCase;
+use RafaelMoran\UITest\UITestCase;
+
 trait NumericAssertions
 {
 	/**

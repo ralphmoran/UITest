@@ -2,7 +2,7 @@
 
 Shows class examples:
 
--- App\UITesting\Lib\Classes\UIFaker.php
+-- RafaelMoran\UITest\UIFaker.php
 
 ```php
 // Examples:
@@ -45,25 +45,25 @@ print_r(
 );
 ```
 
--- App\UITesting\Lib\Classes\UIFormater.php
+-- RafaelMoran\UITest\UIFormater.php
 
 ```php
 // Examples:
 ```
 
--- App\UITesting\Lib\Classes\UIMaker.php
+-- RafaelMoran\UITest\UIMaker.php
 
 ```php
 // Examples:
 ```
 
--- App\UITesting\Lib\Classes\UITestCase.php
+-- RafaelMoran\UITest\UITestCase.php
 
 ```php
 // Examples:
 ```
 
--- App\UITesting\Lib\Classes\UITester.php
+-- RafaelMoran\UITest\UITester.php
 
 ```php
 // Examples:

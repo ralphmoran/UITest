@@ -1,20 +1,27 @@
 <?php
 
+use RafaelMoran\UITest\UITester;
 
-$dirname = dirname(__FILE__);
+require_once 'vendor/autoload.php';
 
-// Helper functions
-require_once $dirname . '/lib/uitest.functions.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
-// Load global config
-load_env();
+/*
+|--------------------------------------------------------------
+|	
+|
+|----------------------------------------------------------------
+*/
 
 // Examples
-require_once $dirname . '/examples/functions.php';
-require_once $dirname . '/examples/classes/classes.php';
+include __DIR__ . '/examples/functions.php';
+include __DIR__ . '/examples/classes/Car.php';
+include __DIR__ . '/examples/classes/AirPlane.php';
+
 
 // Use case
-$tester = new \App\UITesting\Lib\Classes\UITester(['verbose' => true]);
+$tester = new UITester(['verbose' => true]); // set to false to not display details
 
 // Run all tests
 $tester->all();
