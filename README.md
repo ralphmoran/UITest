@@ -7,23 +7,32 @@ UITesting is an extremely light tool for Unit and (?)Integration testing.
 Use the package like another PHP one
 
 ```php
-$dirname = dirname(__FILE__);
+require_once 'vendor/autoload.php';
 
-// Include this file if you're using all the package
-require_once $dirname . '/lib/uitest.functions.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
-// Your code here
+// Entities to test
+include __DIR__ . '/examples/functions.php';
+include __DIR__ . '/examples/classes/Car.php';
+include __DIR__ . '/examples/classes/AirPlane.php';
+
+
+// Use case
+$tester = new \RafaelMoran\UITest\UITester(['verbose' => true]); // set to false to not display details
+
+// Run all tests
+$tester->all();
 
 ```
 
 ## Usage: How to create a UITester
 
 ```php
-// Create a UITester
-require_once $dirname . '/lib/UITester.php';
+use RafaelMoran\UITest\UITester;
 
 // Use case
-$tester = new UITester(); // It runs all test from env('PATH_TESTS'), results are not displayed.
+$tester = new UITester(); // It runs all test from $_ENV['PATH_TESTS'], results are not displayed.
 
 // Or
 
@@ -94,8 +103,9 @@ All your test cases must extend from the abstract class `UITestCase` and all tes
 There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uitest`. You can save your tests in any other folder. In order to execute them you need to specify the new path like it was displayed above.
 
 ```php
-// Create a UITesCase
-require_once $dirname . '/lib/UITestCase.php';
+namespace RafaelMoran\UITesting\Tests;
+
+use RafaelMoran\UITest\UITestCase;
 
 // New test case needs to extend from abstract class UITestCase.
 class CarTestCase extends UITestCase
@@ -147,6 +157,10 @@ $ php uitest -n=ClassNameX
 ```
 
 ```php
+namespace RafaelMoran\UITesting\Tests;
+
+use RafaelMoran\UITest\UITestCase;
+
 class ClassNameXTestCase_518135355 extends UITestCase
 {
 	/**
@@ -178,6 +192,10 @@ $ php uitest --name=FunctionNameX
 ```
 
 ```php
+namespace RafaelMoran\UITesting\Tests;
+
+use RafaelMoran\UITest\UITestCase;
+
 class FunctionNameXTestCase_518135355 extends UITestCase
 {
 	/**
@@ -205,17 +223,21 @@ class FunctionNameXTestCase_518135355 extends UITestCase
 ## Usage all-in-one
 
 ```php
-$dirname = dirname(__FILE__);
+require_once 'vendor/autoload.php';
 
-// Helper functions
-require_once $dirname . '/lib/uitest.functions.php';
-
-// Load global config
-load_env();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
 // Examples
-require_once $dirname . '/examples/functions.php';
-require_once $dirname . '/examples/classes/classes.php';
+include __DIR__ . '/examples/functions.php';
+include __DIR__ . '/examples/classes/Car.php';
+include __DIR__ . '/examples/classes/AirPlane.php';
+
+// Use case
+$tester = new \RafaelMoran\UITest\UITester(['verbose' => true]); // set to false to not display details
+
+// Run all tests
+$tester->all();
 
 // Use case
 $tester = new UITester(['verbose' => true]); // It displays all assertions in detail
