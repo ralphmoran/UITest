@@ -113,7 +113,7 @@ $tester->setPath('/another/real/weird/path/')
 
 All your test cases must extend from the abstract class `UITestCase` and all tests/methods must start with `test_` and return void. 
 
-There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uitest`. You can save your tests in any other folder. In order to execute them you need to specify the new path like it was displayed above.
+There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uimaker`. You can save your tests in any other folder. In order to execute them you need to specify the new path like it was displayed above.
 
 ```php
 namespace RafaelMoran\UITesting\Tests;
@@ -154,7 +154,7 @@ class CarTestCase extends UITestCase
 }
 ```
 
-There is a small REPL that helps you to create new test cases, this REPL is `uitest`
+There is a small REPL that helps you to create new test cases, this REPL is `uimaker`
 
 ## Usage: How to use REPL uitest
 
@@ -166,7 +166,7 @@ $ cd uitesting // Or make an alias that point to `php uitest` globally
 This command will create a new test case, named `ClassNameX`:
 
 ```
-$ php uitest -n=ClassNameX
+$ php uimaker -n=ClassNameX
 ```
 
 ```php
@@ -199,9 +199,9 @@ class ClassNameXTestCase_518135355 extends UITestCase
 ```
 
 ```
-$ php uitest -n=FunctionNameX
+$ php uimaker -n=FunctionNameX
 OR 
-$ php uitest --name=FunctionNameX
+$ php uimaker --name=FunctionNameX
 ```
 
 ```php
