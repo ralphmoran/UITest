@@ -1,5 +1,15 @@
+<h1 align="center">ralphmoran/uitest</h1>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+    A lightweight Unit and Integration(?) testing tool
+</p>
+
+<p align="center">
+    <a href="https://github.com/ralphmoran/UITest"><img src="https://img.shields.io/badge/Source-ralphmoran/uitest-orange" alt="Source Code"></a>
+    <a href="https://packagist.org/packages/rafael.moran/uitest"><img src="https://img.shields.io/badge/Release-v1.0-blue" alt="Download Package"></a>
+    <a href="https://php.net"><img src="https://img.shields.io/badge/PHP-v7.2^-blue" alt="PHP Programming Language"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="Read License"></a>
+</p>
 
 # UITesting
 
@@ -282,6 +292,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## License
 
-MIT license
+## Copyright and License
+
+The ralphmoran/uitest tool is copyright © [Rafael Moran](https://github.com/ralphmoran)
+and licensed for use under the terms of the
+MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
