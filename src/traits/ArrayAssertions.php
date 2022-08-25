@@ -1,5 +1,5 @@
 <?php
-namespace RafaelMoran\UITest\Traits;
+namespace RafaelMoran\UITest;
 
 use RafaelMoran\UITest\UITestCase;
 

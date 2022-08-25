@@ -3,14 +3,14 @@ namespace RafaelMoran\UITest;
 
 abstract class UITestCase
 {
-	use \RafaelMoran\UITest\Traits\StringAssertions,
-		\RafaelMoran\UITest\Traits\ArrayAssertions,
-		\RafaelMoran\UITest\Traits\BooleanAssertions,
-		\RafaelMoran\UITest\Traits\ClassAssertions,
-		\RafaelMoran\UITest\Traits\FileAssertions,
-		\RafaelMoran\UITest\Traits\MiscAssertions,
-		\RafaelMoran\UITest\Traits\NumericAssertions,
-		\RafaelMoran\UITest\Traits\ObjectAssertions;
+	use \RafaelMoran\UITest\StringAssertions,
+		\RafaelMoran\UITest\ArrayAssertions,
+		\RafaelMoran\UITest\BooleanAssertions,
+		\RafaelMoran\UITest\ClassAssertions,
+		\RafaelMoran\UITest\FileAssertions,
+		\RafaelMoran\UITest\MiscAssertions,
+		\RafaelMoran\UITest\NumericAssertions,
+		\RafaelMoran\UITest\ObjectAssertions;
 
 	/** @var array Assertion statuses. */
 	private $assertion_status = [];
