@@ -22,5 +22,9 @@
             "name": "ralph.moran",
             "email": "ralphmoran2003@gmail.com"
         }
-    ]
+    ],
+    "scripts": {
+        "uitest" : "php index.php",
+        "uimaker" : "php uimaker"
+    }
 }

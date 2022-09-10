@@ -17,9 +17,50 @@ UITesting is an extremely light tool for Unit and (?)Integration testing.
 
 ## Installation
 
-Use the package like another PHP one
+.env file
+
+Copy and paste the next ENV variables into your .env file. In order to avoid namespace conflits, customize your own namespace:
+
+```
+PATH_TESTS=tests
+TEST_CASE_TEMPLATE=src/UITestCaseTemplate.tpl
+TEST_NAMESPACE=<YouAppName>\UITesting\Tests
+BASE_DIRNAME=
+TEST_CASE_PREFIX=TestCase_
+```
+
+Create a new PHP file in your root directory, call it whatever you want, e.i.: `run-tests.php`, then add a new script in `scripts` section within `composer.json` using the new PHP filename:
+
+```
+...
+"scripts": {
+        "uitest" : "php index.php",
+        "uimaker" : "php uimaker"
+	}
+...
+```
+
+You can execute your new command like:
+
+```
+$ composer uitest
+```
+
+Or you can use the REPL like:
+
+```
+$ composer uimaker -n=ClassNameX
+```
+
+## Creating a UITester instance
+
+
+
+Use the package like another PHP one:
 
 ```php
+
+// file: run-tests.php (you can pick whatever filename you want)
 require_once 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -116,7 +157,7 @@ All your test cases must extend from the abstract class `UITestCase` and all tes
 There is a folder named `/tests/` where all your test cases will be saved by default when you create them via the REPL `uimaker`. You can save your tests in any other folder. In order to execute them you need to specify the new path like it was displayed above.
 
 ```php
-namespace RafaelMoran\UITesting\Tests;
+namespace <YourAppName>\UITesting\Tests;
 
 use RafaelMoran\UITest\UITestCase;
 
@@ -166,11 +207,11 @@ $ cd uitesting // Or make an alias that point to `php uitest` globally
 This command will create a new test case, named `ClassNameX`:
 
 ```
-$ php uimaker -n=ClassNameX
+$ composer uimaker -n=ClassNameX
 ```
 
 ```php
-namespace RafaelMoran\UITesting\Tests;
+namespace <YourAppName>\UITesting\Tests;
 
 use RafaelMoran\UITest\UITestCase;
 
@@ -199,13 +240,13 @@ class ClassNameXTestCase_518135355 extends UITestCase
 ```
 
 ```
-$ php uimaker -n=FunctionNameX
+$ composer uimaker -n=FunctionNameX
 OR 
-$ php uimaker --name=FunctionNameX
+$ composer uimaker --name=FunctionNameX
 ```
 
 ```php
-namespace RafaelMoran\UITesting\Tests;
+namespace <YourAppName>\UITesting\Tests;
 
 use RafaelMoran\UITest\UITestCase;
 
