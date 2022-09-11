@@ -23,7 +23,7 @@ Copy and paste the next ENV variables into your .env file. In order to avoid nam
 
 ```
 PATH_TESTS=tests
-TEST_CASE_TEMPLATE=src/UITestCaseTemplate.tpl
+TEST_CASE_TEMPLATE=vendor/rafael.moran/uitest/src/UITestCaseTemplate.tpl
 TEST_NAMESPACE=<YouAppName>\UITesting\Tests
 BASE_DIRNAME=
 TEST_CASE_PREFIX=TestCase_
@@ -34,8 +34,8 @@ Create a new PHP file in your root directory, call it whatever you want, e.i.: `
 ```
 ...
 "scripts": {
-        "uitest" : "php index.php",
-        "uimaker" : "php uimaker"
+        "uitest" : "php ./run-tests.php",
+        "uimaker" : "php vendor/rafael.moran/uitest/uimaker"
 	}
 ...
 ```
@@ -49,7 +49,7 @@ $ composer uitest
 Or you can use the REPL like:
 
 ```
-$ composer uimaker -n=ClassNameX
+$ composer uimaker -- -n=ClassNameX
 ```
 
 ## Creating a UITester instance

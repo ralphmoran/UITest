@@ -153,7 +153,7 @@ final class UITester {
 		UIFormatter::setColor("]\n", "", true);
 
 		// Signature
-		UIFormatter::setColor("\nUITesting v0.0", "bgdray", true);
+		UIFormatter::setColor("\nUITesting v1.1", "bgdray", true);
 		UIFormatter::setColor("\nAuthor: Rafael Moran", "bgdray", true);
 		UIFormatter::setColor("\nCopyright 2022, All rights reserved.", "bgdray", true);
 	}

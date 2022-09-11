@@ -8,9 +8,9 @@
     "require": {
         "php": ">=7.2",
         "vlucas/phpdotenv": "^5.4"
-      },
+    },
     "require-dev": {
-      },
+    },
     "autoload": {
         "psr-4": {
             "RafaelMoran\\UITest\\": ["src/classes", "src/traits"]

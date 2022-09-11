@@ -94,6 +94,7 @@ class UIFormatter
 		self::setColor("{$assertion_not_passed_counter}", "", $verbose);
 		self::setColor("]\n", "", $verbose);
 	}
+
 	/**
 	 * Sets color to a string.
 	 *
