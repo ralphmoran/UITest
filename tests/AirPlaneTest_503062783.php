@@ -17,7 +17,7 @@ class AirPlaneTest_503062783 extends UITestCase
 	{
 		$airplane_type = (new \AirPlane)->getType();
 
-		$this->assertIsString($airplane_type)
+		$this->assertIsString(null)
 			->assertNotEmpty($airplane_type);
 	}
 	

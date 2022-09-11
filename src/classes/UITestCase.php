@@ -50,7 +50,12 @@ abstract class UITestCase
 
 				$this->test_counter++;
 
-				call_user_func([$this, $method]) ;
+				try {
+					call_user_func([$this, $method]);
+				} catch (\TypeError $e) {
+					$this->assertion_failed_counter++;
+					UIFormatter::setColor("\t[TypeError] " . $e->getMessage(), 'red', $this->verbose);
+				}
 			}
 
 		}
