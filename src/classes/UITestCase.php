@@ -33,7 +33,7 @@ abstract class UITestCase
 	 * @param array $opts
 	 * @return UITestCase
 	 */
-	public function run( array $opts = [] ) : UITestCase
+	public function run(array $opts = []) : UITestCase
 	{
 		$this->verbose = isset($opts['verbose']) ?  $opts['verbose'] : false;
 
@@ -42,15 +42,15 @@ abstract class UITestCase
 
 		UIFormatter::setColor("\n" . $test_case . "\n", "bgreen", $this->verbose);
 		
-		foreach( get_class_methods($test_case) as $method ){
+		foreach (get_class_methods($test_case) as $method) {
 
-			if( strpos($method, 'test_') === 0 ){
+			if (strpos($method, 'test_') === 0) {
 
 				UIFormatter::setColor("\n" . $method . "\n", "yellow", $this->verbose);
 
 				$this->test_counter++;
 
-				call_user_func( [$this, $method] );
+				call_user_func([$this, $method]) ;
 			}
 
 		}
@@ -72,11 +72,11 @@ abstract class UITestCase
 		$icon	= UIFormatter::$check_mark;
 		$color = "green";
 
-		foreach ($args as $index => $value){
-			$variables .= "$index=>" . ( is_array($value) ? json_encode($value) : $value ) . ", ";
+		foreach ($args as $index => $value) {
+			$variables .= "$index=>" .  (is_array($value) ? json_encode($value) : $value) . ", ";
 		}
 
-		if( ! $status ){
+		if (! $status) {
 			$this->assertion_failed_counter++;
 			$color = "red";
 			$icon = "x";
@@ -85,8 +85,10 @@ abstract class UITestCase
 		UIFormatter::setColor($icon, $color, $this->verbose);
 		UIFormatter::setColor(" " . $name . ": " . rtrim($variables, ', ') . "\n", "white", $this->verbose);
 
-		if( ! $status ){
-			UIFormatter::setColor("\t[!] " . sprintf('Go to: %s:%s', debug_backtrace()[1]['file'], debug_backtrace()[1]['line']) . "\n", "red", $this->verbose );
+		if (! $status) {
+			UIFormatter::setColor("\t[!] " 
+				. sprintf('Go to: %s:%s', debug_backtrace()[1]['file'], debug_backtrace()[1]['line']) 
+				. "\n", "red", $this->verbose);
 		}
 
 		$this->assertion_counter++;
@@ -124,6 +126,7 @@ abstract class UITestCase
 	}
 	
 	/*
+	TODO:
 	assertContainsOnly()
 	assertContainsOnlyInstancesOf()
 	assertEqualsCanonicalizing()

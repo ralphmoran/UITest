@@ -16,50 +16,54 @@ class UIFaker
 	 * @param boolean $as_json
 	 * @return mixed
 	 */
-	public function getFakeArray( array $options, bool $as_json = false )
+	public function getFakeArray(array $options, bool $as_json = false)
 	{
-		if( empty($options) ) 
+		if (empty($options)) {
 			return false;
+		}
 
 		$fake_array = [];
 
 		// Process each argument
-		foreach( $options as $opt ){
+		foreach ($options as $opt) {
 			
 			$format = [];
 			$data   = explode("|", $opt);
 
 			// Process each element
-			foreach( $data as $i ){
-				$trunks = ( $this->isSpecialType($opt) && strpos($i, 'body') !== false ) ? 2 : PHP_INT_MAX;
+			foreach ($data as $i) {
+				$trunks = ($this->isSpecialType($opt) && strpos($i, 'body') !== false) ? 2 : PHP_INT_MAX;
 				$element = explode(":", $i, $trunks);
 				$format[ $element[0] ] = $element[1];
 			}
 
 			// Assign default values
-			if( ! array_key_exists('t', $format) && ! array_key_exists('type', $format) )
+			if (! array_key_exists('t', $format) && ! array_key_exists('type', $format)) {
 				$format['type'] = 'string';
+			}
 
-			if( ! array_key_exists('min', $format) )
+			if (! array_key_exists('min', $format)) {
 				$format['min'] = NULL;
+			}
 
-			if( ! array_key_exists('max', $format) )
+			if (! array_key_exists('max', $format)) {
 				$format['max'] = NULL;
+			}
 
 			// Non-Associative array
-			if( ! $this->isAssociative($format) ){
+			if (! $this->isAssociative($format)) {
 				$fake_array[] = $this->getValueFromType( $format );
 				continue;
 			}
 
 			// "name"|"n" of the index (required for associative array)
-			$format['name'] = ( array_key_exists('n', $format) ) ? $format['n'] : $format['name'] ;
+			$format['name'] = (array_key_exists('n', $format)) ? $format['n'] : $format['name'] ;
 
 			// Defaul index for type
-			$format['type'] = ( array_key_exists('t', $format) ) ? $format['t'] : $format['type'] ;
+			$format['type'] = (array_key_exists('t', $format)) ? $format['t'] : $format['type'] ;
 
 			// Associative array
-			$fake_array[ $format['name'] ] = $this->getValueFromType( $format );
+			$fake_array[ $format['name'] ] = $this->getValueFromType($format);
 
 		}
 
@@ -72,9 +76,9 @@ class UIFaker
 	 * @param array $array
 	 * @return string
 	 */
-	public function getFakeJSON( array $array ) : string
+	public function getFakeJSON(array $array) : string
 	{
-		return $this->getFakeArray( $array, true );
+		return $this->getFakeArray($array, true);
 	}
 
 	/**
@@ -85,9 +89,9 @@ class UIFaker
 	 * @param string $domain
 	 * @return string
 	 */
-	public function getFakeEmail( string $username = NULL, 
+	public function getFakeEmail(string $username = NULL, 
 									string $mail = 'fakercompany', 
-									string $domain = 'com' ) : string
+									string $domain = 'com') : string
 	{
 		$username = is_null($username) 
 					? strtolower($this->getFakeName()) 
@@ -95,8 +99,9 @@ class UIFaker
 
 		$email    = $username . $this->getRandInteger(8) .'@' . $mail . '.' . $domain;
 
-		if ( filter_var($email, FILTER_VALIDATE_EMAIL) )
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			return $email;
+		}
 		
 		return NULL;
 	}
@@ -186,7 +191,7 @@ class UIFaker
 	 *
 	 * @return string
 	 */
-	public function getFakeUsername( string $connector = '.' ) : string
+	public function getFakeUsername(string $connector = '.') : string
 	{
 		return strtolower($this->getFakeName()) . $connector . strtolower($this->getFakeName());
 	}

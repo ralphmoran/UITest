@@ -33,7 +33,7 @@ final class UITester {
 	 *
 	 * @param array $opts
 	 */
-	public function __construct( $opts = [] )
+	public function __construct($opts = [])
 	{
 		$this->path = ( isset($opts['path']) && !empty($opts['path']) ) 
 							? $opts['path']
@@ -54,11 +54,13 @@ final class UITester {
 	 */
 	public function all( string $path = '' )
 	{
-		if( ! empty($path) )
+		if (! empty($path)) {
 			$this->setPath($path);
+		}
 
-		foreach(glob($this->path . '/*' . $this->extension) as $test)
+		foreach (glob($this->path . '/*' . $this->extension) as $test) {
 			$this->only($test);
+		}
 
 		// if( $this->verbose )
 			$this->outputTestResults();
@@ -74,13 +76,15 @@ final class UITester {
 	 */
 	public function only( $tests )
 	{
-		if( empty( $tests ) )
+		if (empty($tests)) {
 			return false;
+		}
 
-		if( is_string( $tests ) )
+		if (is_string($tests)) {
 			$tests = array($tests);
+		}
 
-		foreach($tests as $test){
+		foreach ($tests as $test) {
 			$this->logTestCaseResults( 
 				$this->load_test( $test )
 					->run(['verbose' => $this->verbose])
@@ -99,8 +103,9 @@ final class UITester {
 	 */
 	public function setPath( $path )
 	{
-		if( empty( $path ) )
+		if (empty($path)) {
 			return false;
+		}
 
 		$this->path = rtrim($path, '/');
 
@@ -119,11 +124,13 @@ final class UITester {
 	{
 		UIFormatter::setColor("\n\nUITest status:", "bgreen", true);
 
-		if ( $this->total_assertions_failed )
+		if ($this->total_assertions_failed) {
 			UIFormatter::setColor(" Failed! ", "bgired", true);
+		}
 
-		if ( $this->total_assertions_failed == 0 )
+		if ($this->total_assertions_failed == 0) {
 			UIFormatter::setColor(" Passed! ", "bigreen", true);
+		}
 
 		UIFormatter::setColor("\n\n", "", true);
 		UIFormatter::setColor("Total test cases:", "yellow", true);
@@ -163,13 +170,13 @@ final class UITester {
 	 * @return mixed
 	 * @throws Exception If $test does not exist or class couldn't be loaded.
 	 */
-	private function load_test( $test )
+	private function load_test($test)
 	{
-		$test_class = $this->getTestName( $test );
+		$test_class = $this->getTestName($test);
 
-		if( ! in_array( $test_class, $this->loaded_tests ) ){
+		if (! in_array( $test_class, $this->loaded_tests )) {
 
-			test_loader( $this->path . "/" . $test_class . "." .  $this->extension );
+			test_loader($this->path . "/" . $test_class . "." .  $this->extension);
 
 			$test_class = $_ENV['TEST_NAMESPACE'] . '\\' . $test_class;
 			
@@ -186,11 +193,11 @@ final class UITester {
 	 * @param string $ext
 	 * @return string
 	 */
-	private function getTestName( $file, $ext = 'php' ) : string
+	private function getTestName($file, $ext = 'php') : string
 	{
-		$test_name = explode( '/', $file );
+		$test_name = explode('/', $file);
 
-		return rtrim( end( $test_name ), '.' . $ext );
+		return rtrim(end($test_name ), '.' . $ext);
 	}
 
 	/**
@@ -199,16 +206,15 @@ final class UITester {
 	 * @param array $results
 	 * @return void
 	 */
-	private function logTestCaseResults( array $results ) : void
+	private function logTestCaseResults(array $results) : void
 	{
-		if( empty($results) )
+		if (empty($results)) {
 			return;
+		}
 
 		$this->total_test_cases++;
 		$this->total_tests += $results['tests'];
 		$this->total_assertions += $results['assertions'];
 		$this->total_assertions_failed += $results['assertions_failed'];
-
 	}
-
 }
