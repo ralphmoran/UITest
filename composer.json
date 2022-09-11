@@ -26,7 +26,7 @@
     "scripts": {
         "uitest" : "php index.php",
         "uimaker" : "php uimaker",
-        "post-install-cmd": [
+        "post-package-install": [
             "\n\n\necho 'Hi there! This is the most awesome Unit Testing package!'\n\n\n"
         ]
     }
